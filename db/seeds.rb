@@ -8,7 +8,7 @@
 
 require 'ffaker'
 
-user = User.create(:username=>'admin@email.com', :email=>"password123");
+user = User.create(:email=>'admin@email.com', :password=>"password123");
 
 10.times do
  User.create(
