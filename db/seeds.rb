@@ -8,11 +8,20 @@
 
 require 'ffaker'
 
-user = User.create(:email=>'admin@email.com', :password=>"password123");
+user = User.create(:email=>'admin@email.com', :password=>"password123", :username=>'admin');
 
 10.times do
- User.create(
+ sitter = User.create(
+        username: FFaker::Internet.user_name,
         email: FFaker::Internet.email,
         password: 'password123',
       )
+        Sitter.create(
+          user: sitter,
+          phone: FFaker::PhoneNumberSG.phone_number,
+          price: '$40',
+          is_visible: true,
+          picture: FFaker::Image.url(size = '300x300', format = 'png', bg_color = :random, text_color = :random, text = nil)
+        )
 end
+
