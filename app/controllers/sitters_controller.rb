@@ -1,4 +1,5 @@
 class SittersController < ApplicationController
+  before_action :authenticate_user!
 
       def index
         @sitter = Sitter.all()
