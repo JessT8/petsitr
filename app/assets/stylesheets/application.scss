@@ -15,11 +15,12 @@
  */
 
 // normalize before any styling
-html, body {
+html {
   height: 100%;
   padding: 0;
   margin: 0;
   overflow-x: hidden;
+  padding-top: 56px;
 }
 
 // login page
@@ -37,4 +38,19 @@ html, body {
 #register {
   height: 100%;
   background-color: pink;
+}
+
+#index {
+  .card{
+    max-width: 330px;
+    padding: 0 0;
+  }
+
+  .card img {
+    max-height: 250px;
+  }
+
+  .card-body {
+    padding-bottom: 5px;
+  }
 }
