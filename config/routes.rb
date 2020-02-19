@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
     get '/profile/edit' => 'sitters#edit', as: 'edit_profile'
     patch '/sitters/:id' => 'sitters#update'
+    get '/profile/edit/timeslots/:id' => 'timeslots#edit', as: 'edit_timeslot'
+    patch '/profile/edit/timeslots/:id' => 'timeslots#update'
     get '/timeslots/new' => 'timeslots#new', as: 'new_timeslot' #for testing
     post '/timeslots' => 'timeslots#create' #for testing
 end
