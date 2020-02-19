@@ -23,6 +23,7 @@ class SittersController < ApplicationController
 
       def create
         @sitter = Sitter.new(sitter_params)
+        @timeslot = Timeslot.new(timeslot_params)
         @sitter.user = current_user
 
         # empty checkboxes are not sent, therefore nil
@@ -32,12 +33,16 @@ class SittersController < ApplicationController
 
         @sitter.save
 
+        @timeslot.sitter = current_user.sitter
+        @timeslot.save
+
         redirect_to profile_path
       end
 
       def edit
         @sitter = Sitter.find_by(user: current_user)
         @pets = Pet.all
+        @timeslots = Timeslot.where(sitter: current_user.sitter)
       end
 
       def update
@@ -61,6 +66,10 @@ class SittersController < ApplicationController
 
       def sitter_params
         params.require(:sitter).permit(:phone, :description, :location, :price, :about, :picture, :is_visible, :pet_ids=>[])
+      end
+
+      def timeslot_params
+        params.require(:sitter).permit(:available_start_date, :available_end_date)
       end
 
 end

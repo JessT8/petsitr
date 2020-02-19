@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2020_02_19_030827) do
     t.index ["user_id"], name: "index_sitters_on_user_id"
   end
 
+  create_table "timeslots", force: :cascade do |t|
+    t.bigint "sitter_id"
+    t.date "available_start_date"
+    t.date "available_end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sitter_id"], name: "index_timeslots_on_sitter_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

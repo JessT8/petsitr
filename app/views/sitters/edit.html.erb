@@ -27,6 +27,7 @@
   <%= form.label :visible %>
   <%= form.check_box :is_visible, { :multiple => false }, true, false %>
   </p>
+
   <p><%=label_tag "Pet preferences:"%></p>
  <% @pets.each do |c| %>
     <%= check_box_tag "sitter[pet_ids][]",
@@ -34,6 +35,19 @@
     <%= label_tag "sitter[pet_ids][][#{c.id}]", c.animal %>
 <% end %>
   </p>
+
+  <% @timeslots.each do |timeslot| %>
+  <p>
+    <%= form.label :available_start_time %>
+    <%= form.date_select :available_start_date %>
+  </p>
+
+  <p>
+    <%= form.label :available_end_time %>
+    <%= form.date_select :available_end_date %>
+  </p>
+  <% end %>
+
   <p>
     <%= form.submit %>
   </p>
