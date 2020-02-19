@@ -1,4 +1,19 @@
+<section id="index">
 
+
+<div class="row d-flex justify-content-even justify-content-center mt-3">
 <% @sitters.each do |sitter| %>
-    <p><%= sitter.user.username %></p>
+    <div class="card col-4 mx-3 my-3">
+        <img src='<%= sitter.picture %>' class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><%= sitter.user.username %></h5>
+            <p class="card-text float-right"><%= sitter.price %></small></p>
+        </div>
+            <a href='/sitters/<%= sitter.id %>' class='btn btn-success'>See Profile</a>
+    </div>
 <% end  %>
+</div>
+
+
+
+</section>
