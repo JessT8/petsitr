@@ -17,7 +17,11 @@
   	<div class="topnav">
   	<ul>
   	<% if user_signed_in? %>
-	 <%= render :partial =>"shared/signin"%>
+	 <%= render :partial => "shared/signin" %>
+    <% else %>
+    <li style="float:right">
+  <%= link_to 'Login', '/users/sign_in' %>
+</li>
 			<% end %>
   	</ul>
   </div>
