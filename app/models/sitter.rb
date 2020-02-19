@@ -1,4 +1,4 @@
 class Sitter < ApplicationRecord
     belongs_to :user
-    has_many :timeslot
+    has_many :timeslots
 end
