@@ -28,6 +28,15 @@
   <%= form.check_box :is_visible, { :multiple => false }, true, false %>
   </p>
 
+  <p><%=label_tag "Pet preferences:"%></p>
+ <% @pets.each do |c| %>
+    <%= check_box_tag "sitter[pet_ids][]",
+      c.id, (checked =  form.object.pet_ids.include?(c.id)) %>
+    <%= label_tag "sitter[pet_ids][][#{c.id}]", c.animal %>
+<% end %>
+  </p>
+
+  <% @timeslots.each do |timeslot| %>
   <p>
     <%= form.submit %>
   </p>
@@ -37,7 +46,7 @@
     <% @timeslots.each do |timeslot| %>
       <p>
         <label>Available Start Date</label>
-        <%= timeslot.available_start_date %><%= link_to 'TESTING', edit_timeslot_path(timeslot.id) %>
+        <%= timeslot.available_start_date %><%= link_to 'Edit Availability', edit_timeslot_path(timeslot.id) %>
       </p>
 
       <p>

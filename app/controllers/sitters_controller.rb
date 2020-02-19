@@ -14,6 +14,7 @@ class SittersController < ApplicationController
       end
 
       def new
+        @pets = Pet.all
       end
 
       def show
@@ -40,6 +41,7 @@ class SittersController < ApplicationController
 
       def edit
         @sitter = Sitter.find_by(user: current_user)
+        @pets = Pet.all
         @timeslots = Timeslot.where(sitter: current_user.sitter)
       end
 
@@ -63,7 +65,7 @@ class SittersController < ApplicationController
       private
 
       def sitter_params
-        params.require(:sitter).permit(:phone, :description, :location, :price, :about, :picture, :is_visible)
+        params.require(:sitter).permit(:phone, :description, :location, :price, :about, :picture, :is_visible, :pet_ids=>[])
       end
 
       def timeslot_params

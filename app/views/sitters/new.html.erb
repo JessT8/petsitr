@@ -1,4 +1,4 @@
-<h1>Create profile</h1>
+<h1>Create pet sitter profile</h1>
 
 <%= form_with scope: :sitter, url: profile_path, local: true do |form| %>
 
@@ -27,7 +27,10 @@
   <%= form.label :visible %>
   <%= form.check_box :is_visible, { :multiple => false }, true, false %>
   </p>
-
+  <p>
+  	<p><%=label_tag "Pet preferences:"%></p>
+  	<%= form.collection_check_boxes :pet_ids, @pets, :id, :animal %>
+  </p>
   <p>
     <%= form.label :available_start_time %>
     <%= form.date_select :available_start_date %>

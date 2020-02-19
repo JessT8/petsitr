@@ -11,6 +11,12 @@ require 'ffaker'
 dog  = Pet.create(
     animal: 'dog'
 )
+ Pet.create(
+    animal: 'cat'
+)
+ Pet.create(
+    animal: 'bird'
+)
 user = User.create(:email=>'admin@email.com', :password=>"password123", :username=>'admin');
 
 10.times do
