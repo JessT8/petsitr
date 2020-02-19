@@ -8,6 +8,9 @@
 
 require 'ffaker'
 
+dog  = Pet.create(
+    animal: 'dog'
+)
 user = User.create(:email=>'admin@email.com', :password=>"password123", :username=>'admin');
 
 10.times do
@@ -16,12 +19,12 @@ user = User.create(:email=>'admin@email.com', :password=>"password123", :usernam
         email: FFaker::Internet.email,
         password: 'password123',
       )
-        Sitter.create(
+   pet_sitter = Sitter.create(
           user: sitter,
           phone: FFaker::PhoneNumberSG.phone_number,
           price: '$40',
           is_visible: true,
           picture: FFaker::Image.url(size = '300x300', format = 'png', bg_color = :random, text_color = :random, text = nil)
         )
+    pet_sitter.pets << dog
 end
-
