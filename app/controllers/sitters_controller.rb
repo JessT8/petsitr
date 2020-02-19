@@ -20,7 +20,17 @@ class SittersController < ApplicationController
       end
     
       def create
-        @sitter = Sitter.new(params[:Sitter])
+        @sitter = Sitter.new(sitter_params)
+        @sitter.user = current_user
+
+        # empty checkboxes are not sent, therefore nil
+        if !@sitter.is_visible
+          @sitter.is_visible = false
+        end
+        
+        @sitter.save
+
+        redirect_to profile_path
       end
     
       def update
@@ -33,6 +43,12 @@ class SittersController < ApplicationController
     
       def destroy
         @sitter = Sitter.find(params[:id])
+      end
+
+      private
+
+      def sitter_params
+        params.require(:sitter).permit(:phone, :location, :price, :about, :picture, :is_visible)
       end
 
 end

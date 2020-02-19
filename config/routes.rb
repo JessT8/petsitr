@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/sitters/:id' => 'sitters#show', as: 'sitter'
   get '/profile' => 'sitters#profile', as: 'profile'
   get '/profile/new' => 'sitters#new', as: 'new_profile'
+  post '/profile' => 'sitters#create'
+  
   get '/profile/edit' => 'sitters#edit', as: 'edit_profile'
 
 end
