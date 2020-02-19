@@ -2,7 +2,7 @@ class SittersController < ApplicationController
   before_action :authenticate_user!
 
       def index
-        @sitter = Sitter.all()
+        @sitters = Sitter.where(:is_visible => true).where.not(:user => current_user)
       end
       
       def profile
