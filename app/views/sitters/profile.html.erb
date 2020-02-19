@@ -1,4 +1,11 @@
-<%= @sitter.user.username + " profile" %>
-
-<%= link_to 'Edit', edit_profile_path %>
-
+<h1><%= @sitter.user.username%> <span style="font-size:20px"><%= link_to 'Edit', edit_profile_path %></span></h1>
+<div class="row">
+	<div class="col">
+  <h4>About me</h4>
+  <p><%= @sitter.description%></p>
+  <p><strong>Price:</strong>$<%= @sitter.price%></p>
+</div>
+   <div class="col">
+   	<%=image_tag("https://joomly.net/frontend/web/images/googlemap/map.png")%>
+   </div>
+</div>
