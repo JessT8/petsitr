@@ -39,14 +39,13 @@ class SittersController < ApplicationController
       end
 
       def edit
-        byebug
         @sitter = Sitter.find_by(user: current_user)
         @timeslots = Timeslot.where(sitter: current_user.sitter)
       end
 
       def update
         @sitter = Sitter.find_by(user: current_user)
-
+        byebug
         if !sitter_params[:is_visible]
           @sitter.is_visible = false
           @sitter.update(sitter_params)
