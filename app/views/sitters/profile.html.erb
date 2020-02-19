@@ -2,7 +2,7 @@
 <h1><%= @sitter.user.username%> <span style="font-size:20px"><%= link_to 'Edit', edit_profile_path %></span></h1>
 <div class="row justify-content-center align-self-center">
 	<div class="col mx-auto">
-	<img src='https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png' alt="..." class ='img-responsive' style="width:25%">
+	<img src='<%= @sitter.picture %>'alt="..." class ='img-responsive' style="width:25%">
   <h4>About me</h4>
   <p><%= @sitter.description%></p>
   <p><h4 style="display:inline-block">Price: </h4><span> $<%= @sitter.price%></span></p>
