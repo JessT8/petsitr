@@ -27,18 +27,27 @@ class SittersController < ApplicationController
         if !@sitter.is_visible
           @sitter.is_visible = false
         end
-        
+
         @sitter.save
 
         redirect_to profile_path
       end
-    
-      def update
-        @sitter = Sitter.find(params[:id])
-      end
-    
+
       def edit
         @sitter = Sitter.find_by(user: current_user)
+      end
+    
+      def update
+        @sitter = Sitter.find_by(user: current_user)
+        
+        if !sitter_params[:is_visible]
+          @sitter.is_visible = false
+          @sitter.update(sitter_params)
+        else
+          @sitter.update(sitter_params)
+        end
+
+        redirect_to profile_path
       end
     
       def destroy
@@ -48,7 +57,7 @@ class SittersController < ApplicationController
       private
 
       def sitter_params
-        params.require(:sitter).permit(:phone, :location, :price, :about, :picture, :is_visible)
+        params.require(:sitter).permit(:phone, :description, :location, :price, :about, :picture, :is_visible)
       end
 
 end
