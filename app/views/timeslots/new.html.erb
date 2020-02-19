@@ -1,0 +1,13 @@
+<h1>HELLO</h1>
+
+<%= form_with scope: :timeslot, url: timeslots_path, local: true do |form| %>
+    <label>Start :</label>
+    <%= date_select :timeslot, :available_start_date %>
+    <br>
+    <label>End :</label>
+    <%= date_select :timeslot, :available_end_date %>
+    <br>
+    <%= form.submit %>
+
+
+<% end %>
