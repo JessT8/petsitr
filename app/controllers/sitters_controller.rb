@@ -3,7 +3,18 @@ class SittersController < ApplicationController
       def index
         @sitter = Sitter.all()
       end
-    
+      
+      def profile
+        @sitter = Sitter.find_by(user: current_user)
+        if @sitter
+        else 
+          redirect_to new_profile_path
+        end
+      end
+
+      def new
+      end
+
       def show
         @sitter = Sitter.find(params[:id])
       end
@@ -17,7 +28,7 @@ class SittersController < ApplicationController
       end
     
       def edit
-        @sitter = Sitter.find(params[:id])
+        @sitter = Sitter.find_by(user: current_user)
       end
     
       def destroy
