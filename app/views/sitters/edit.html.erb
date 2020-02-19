@@ -38,18 +38,19 @@
 
   <% @timeslots.each do |timeslot| %>
   <p>
-    <%= form.label :available_start_time %>
-    <%= form.date_select :available_start_date %>
-  </p>
-
-  <p>
-    <%= form.label :available_end_time %>
-    <%= form.date_select :available_end_date %>
-  </p>
-  <% end %>
-
-  <p>
     <%= form.submit %>
   </p>
 
+  <% end %>
+
+    <% @timeslots.each do |timeslot| %>
+      <p>
+        <label>Available Start Date</label>
+        <%= timeslot.available_start_date %><%= link_to 'Edit Availability', edit_timeslot_path(timeslot.id) %>
+      </p>
+
+      <p>
+        <label>Available End Date</label>
+        <%= timeslot.available_end_date %>
+      </p>
   <% end %>

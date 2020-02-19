@@ -47,7 +47,6 @@ class SittersController < ApplicationController
 
       def update
         @sitter = Sitter.find_by(user: current_user)
-
         if !sitter_params[:is_visible]
           @sitter.is_visible = false
           @sitter.update(sitter_params)
