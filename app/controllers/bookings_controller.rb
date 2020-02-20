@@ -24,11 +24,6 @@ class BookingsController < ApplicationController
     end
 
     def show
-        @sitter = Sitter.find(params[:id])
-        @bookings = Booking.where(sitter: @sitter)
-    end
-
-    def user_show
         @mybookings = Booking.where(user: current_user)
         @bookings = Booking.where(sitter: current_user.sitter)
     end
