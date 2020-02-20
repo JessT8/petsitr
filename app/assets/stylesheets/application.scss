@@ -132,7 +132,9 @@ body {
 
 // main page
 #index {
-  background-color: $main-color;
+  // background-color: $main-color;
+  background-image: url('https://ak0.picdn.net/shutterstock/videos/1024340720/thumb/3.jpg');
+  background-position: bottom;
 
   .card {
     padding: 0 0;
