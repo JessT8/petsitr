@@ -71,9 +71,9 @@ body {
 #login {
   overflow: hidden;
   height: 100%;
-  background-image: url("https://ak5.picdn.net/shutterstock/videos/17178685/thumb/1.jpg");
+  background-image: url("https://img.wallpapersafari.com/desktop/1366/768/27/69/fbQHlR.png");
   background-position: center;
-  background-position-y: 80px;
+  background-position-y: -130px;
   background-repeat: no-repeat;
 
   .first-line {
@@ -106,9 +106,9 @@ body {
 #register {
   overflow: hidden;
   height: 100%;
-  background-image: url("https://ak5.picdn.net/shutterstock/videos/17178685/thumb/1.jpg");
+  background-image: url("https://img.wallpapersafari.com/desktop/1366/768/27/69/fbQHlR.png");
   background-position: center;
-  background-position-y: 80px;
+  background-position-y: -130px;
   background-repeat: no-repeat;
 
   .btn:hover, .btn-outline-success:hover{
@@ -163,6 +163,13 @@ body {
     .btn, .btn-outline-success {
       border-color: $button-color;
       background-color: $button-color;
+    }
+
+    .btn:focus, .btn:active, .btn:active:focus, .btn-outline-success:focus, .btn-outline-success:active, .btn-outline-success:active:focus {
+      outline: none !important;
+      box-shadow: none !important;
+      background-color: #5683A0!important; 
+      border: none!important
     }
 
     .card-img-block {
