@@ -7,6 +7,9 @@
   <p><%= @sitter.description%></p>
   <p><h4 style="display:inline-block">Price: </h4><span> <%= @sitter.price%></span></p>
   <h4>Available Dates</h4>
+  <% if @sitter.timeslots.length > 0 %>
+  <%= link_to 'Book', new_booking_path, :class => 'btn btn-primary' %>
+  <% end %>
   <% @sitter.timeslots.each do |t| %>
   <p><%= t.available_start_date.strftime("%d %b %Y")%> to <%= t.available_end_date.strftime("%d %b %Y")%></p>
   <% end %>

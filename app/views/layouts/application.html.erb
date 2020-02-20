@@ -24,8 +24,11 @@
     <ul class="navbar-nav mx-auto">
       <li class="nav-item active">
         <a class="nav-link" href="/profile">Profile</a>
-        </div>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/users/bookings">Bookings</a>
+      </li>
+      </div>
     </ul>
     <% end %>
     <form class="form-inline ml-auto">
@@ -34,7 +37,7 @@
     <% else %>
     <a class='btn btn-outline-success text-light my-2 my-sm-0 mr-3' type='submit' href="/users/sign_in">Login</a>
     <% end %>
-    
+
     <% if user_signed_in? %>
     <% else %>
     <a class='btn btn-outline-success text-light my-2 my-sm-0' type='submit' href="/users/sign_up">Register</a>
