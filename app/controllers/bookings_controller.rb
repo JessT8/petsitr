@@ -50,7 +50,7 @@ class BookingsController < ApplicationController
                 new_timeslot.save
                 @timeslot.update(available_start_date: @booking.end_date)
             else
-                @timeslot.destory
+                @timeslot.destroy
             end
         else
             @booking.update(status: false)
