@@ -31,12 +31,18 @@ class SittersController < ApplicationController
           @sitter.is_visible = false
         end
 
-        @sitter.save
-
-        @timeslot.sitter = current_user.sitter
-        @timeslot.save
-
-        redirect_to profile_path
+        if @sitter.save
+          @timeslot.sitter = current_user.sitter
+          if @timeslot.save
+            redirect_to profile_path
+          else
+            @pets = Pet.all
+            render 'new'
+          end
+        else
+          @pets = Pet.all
+          render 'new'
+        end
       end
 
       def edit

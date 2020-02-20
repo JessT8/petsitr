@@ -1,48 +1,58 @@
+  <div style="width:70%; margin:0 auto;">
 <h1>Create pet sitter profile</h1>
 
 <%= form_with scope: :sitter, url: profile_path, local: true do |form| %>
-
-  <p>
-    <%= form.label :phone %><br>
-    <%= form.text_field :phone %>
-  </p>
-  <p>
+  <div class="form-row ">
+    <div class="form-group col-md-6 ">
+	    <%= form.label :phone %><br>
+	    <%= form.text_field :phone, autofocus: true, :class=>"form-control", :type=>"tel" %>
+    	<span class="error">
+ 		 		<%= show_errors(@sitter, :phone) %>
+			</span>
+		</div>
+    <div class="form-group col-md-6">
+    	<%= form.label :price_per_day%><br>
+    	<%= form.text_field :price, :class=>"form-control" %>
+  	</div>
+  </div>
+  	  <div class="form-row ">
+    <div class="form-group col-md-6 ">
+	  	<%= form.label :available_start_time %><br>
+	  	<%= form.text_field :available_start_time , :type=>"date", :class=>"form-control" %>
+  	</div>
+	  <div class="form-group col-md-6">
+	    <%= form.label :available_end_time %><br>
+	  	<%= form.text_field :available_end_time , :type=>"date", :class=>"form-control" %>
+	</div>
+</div>
+  <div class="form-group">
     <%= form.label :location %><br>
-    <%= form.text_field :location %>
-  </p>
-  <p>
-    <%= form.label :price %><br>
-    <%= form.text_field :price %>
-  </p>
-  <p>
+    <%= form.text_field :location , :class=>"form-control"%>
+	</div>
+	<div class="form-group">
     <%= form.label :about %><br>
-    <%= form.text_field :description %>
-  </p>
-  <p>
+    <%= form.text_area :description, :class=>"form-control", :rows => 3, :style=>"resize:none;", :maxlength=>"1000" %>
+  </div>
+  <div class="field form-group">
     <%= form.label :avatar_url %><br>
-    <%= form.text_field :picture %>
-  </p>
-
-  <p>
-  <%= form.label :visible %>
-  <%= form.check_box :is_visible, { :multiple => false }, true, false %>
-  </p>
-  <p>
-  	<p><%=label_tag "Pet preferences:"%></p>
-  	<%= form.collection_check_boxes :pet_ids, @pets, :id, :animal %>
-  </p>
-  <p>
-    <%= form.label :available_start_time %>
-    <%= form.date_select :available_start_date, order: [:day, :month, :year] %>
-  </p>
-
-  <p>
-    <%= form.label :available_end_time %>
-    <%= form.date_select :available_end_date, order: [:day, :month, :year] %>
-  </p>
-
-  <p>
+    <%= form.text_field :picture, :class=>"form-control" %>
+  </div>
+   <div class="form-row">
+  <div class="field form-group col-md-2">
+	  <%= form.check_box :is_visible, { :multiple => false }, true, false %>
+	  <%= form.label :public %>
+  </div>
+  <div class="field form-group col-md-6">
+  	<%=label_tag "Pet preferences:"%>
+     <%= form.collection_check_boxes(:pet_ids, @pets, :id, :animal) do |a| %>
+        <%= a.label class:"label-checkbox" do%>
+         <%=a.check_box + " " + a.text%>
+        <%end%>
+    <% end %>
+  </div>
+</div>
+  <div class="actions">
     <%= form.submit %>
-  </p>
-
+  </div>
   <% end %>
+</div>
