@@ -55,6 +55,13 @@ body {
     border-color: $button-color;
     background-color: $button-color;
   }
+
+  .btn:focus, .btn:active, .btn:active:focus, .btn-outline-success:focus, .btn-outline-success:active, .btn-outline-success:active:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: $button-color!important; 
+    border: none!important
+  }
 }
 
 
@@ -86,6 +93,13 @@ body {
     color: $button-color;
   }
 
+  .btn:focus, .btn:active, .btn:active:focus, .btn-outline-success:focus, .btn-outline-success:active, .btn-outline-success:active:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: $button-color!important; 
+    border: none!important
+  }
+
 }
 
 // registration page 
@@ -106,6 +120,13 @@ body {
   .btn, .btn-outline-success {
     border-color: $button-color;
     color: $button-color;
+  }
+
+  .btn:focus, .btn:active, .btn:active:focus, .btn-outline-success:focus, .btn-outline-success:active, .btn-outline-success:active:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: $button-color!important; 
+    border: none!important
   }
 }
 
