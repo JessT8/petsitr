@@ -15,48 +15,185 @@
  */
 
 // normalize before any styling
+
+$main-color: #F6F6F2;
+$secondary-color: rgba(194, 237, 206, 0.418);
+$second-contrast: #BADFE7;
+$supplement-color: #6FB3B8;
+$contrast-color: #388087;
+$button-color: #68A0C3;
+
+.field_with_errors { display: inline; }
+
 html {
   height: 100%;
   padding: 0;
   margin: 0;
   overflow-x: hidden;
   padding-top: 56px;
+  background-color: $main-color;
 }
 
 body {
   height: 100%;
 }
 
+.navbar {
+  background-color: #C38B68;
+
+  .navbar-brand {
+    color: white;
+  }
+
+  .btn:hover, .btn-outline-success:hover{
+    background-color: #5683A0;
+    border-color: #5683A0;
+    color: white!important;
+  }
+
+  .btn, .btn-outline-success {
+    border-color: $button-color;
+    background-color: $button-color;
+  }
+
+  .btn:focus, .btn:active, .btn:active:focus, .btn-outline-success:focus, .btn-outline-success:active, .btn-outline-success:active:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: $button-color!important; 
+    border: none!important
+  }
+}
+
+
+
+
 // login page
 #login {
+  overflow: hidden;
   height: 100%;
-  background-color: pink;
+  background-image: url("https://img.wallpapersafari.com/desktop/1366/768/27/69/fbQHlR.png");
+  background-position: center;
+  background-position-y: -130px;
+  background-repeat: no-repeat;
 
   .first-line {
     color: red;
     position: relative;
     left: 50px;
   }
+
+  .btn:hover, .btn-outline-success:hover{
+    background-color: $button-color;
+    border-color: $button-color;
+    color: white!important;
+  }
+
+  .btn, .btn-outline-success {
+    border-color: $button-color;
+    color: $button-color;
+  }
+
+  .btn:focus, .btn:active, .btn:active:focus, .btn-outline-success:focus, .btn-outline-success:active, .btn-outline-success:active:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: $button-color!important; 
+    border: none!important
+  }
+
 }
 
 // registration page 
 #register {
+  overflow: hidden;
   height: 100%;
-  background-color: pink;
+  background-image: url("https://img.wallpapersafari.com/desktop/1366/768/27/69/fbQHlR.png");
+  background-position: center;
+  background-position-y: -130px;
+  background-repeat: no-repeat;
+
+  .btn:hover, .btn-outline-success:hover{
+    background-color: $button-color;
+    border-color: $button-color;
+    color: white!important;
+  }
+
+  .btn, .btn-outline-success {
+    border-color: $button-color;
+    color: $button-color;
+  }
+
+  .btn:focus, .btn:active, .btn:active:focus, .btn-outline-success:focus, .btn-outline-success:active, .btn-outline-success:active:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: $button-color!important; 
+    border: none!important
+  }
 }
 
 // main page
 #index {
-  .card{
-    max-width: 330px;
+  // background-color: $main-color;
+  background-image: url('https://ak0.picdn.net/shutterstock/videos/1024340720/thumb/3.jpg');
+  background-position: bottom;
+
+  .card {
     padding: 0 0;
+
+    .card-body {
+      padding-bottom: 5px;
+    }
   }
 
-  .card img {
-    max-height: 250px;
+  .profile-card-5 {
+    margin-top: 20px;
+
+    .btn {
+      border-radius: 2px;
+      text-transform: uppercase;
+      font-size: 12px;
+      padding: 7px 20px;
+    }
+
+    .btn:hover, .btn-outline-success:hover{
+      background-color: #5683A0;
+      border-color: #5683A0;
+      color: white!important;
+    }
+  
+    .btn, .btn-outline-success {
+      border-color: $button-color;
+      background-color: $button-color;
+    }
+
+    .btn:focus, .btn:active, .btn:active:focus, .btn-outline-success:focus, .btn-outline-success:active, .btn-outline-success:active:focus {
+      outline: none !important;
+      box-shadow: none !important;
+      background-color: #5683A0!important; 
+      border: none!important
+    }
+
+    .card-img-block {
+      width: 91%;
+      margin: 0 auto;
+      position: relative;
+      top: -20px;
+
+    }
+
+    .card-img-block img {
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.63);
+    }
+
+    h5 {
+      color: #4E5E30;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 14px;
+      font-weight: 300;
+    }
   }
 
-  .card-body {
-    padding-bottom: 5px;
-  }
 }
