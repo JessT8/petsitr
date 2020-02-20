@@ -41,8 +41,12 @@ class SittersController < ApplicationController
 
       def edit
         @sitter = Sitter.find_by(user: current_user)
-        @pets = Pet.all
-        @timeslots = Timeslot.where(sitter: current_user.sitter)
+        if @sitter
+          @pets = Pet.all
+          @timeslots = Timeslot.where(sitter: current_user.sitter)
+        else
+          redirect_to new_profile_path
+        end
       end
 
       def update
