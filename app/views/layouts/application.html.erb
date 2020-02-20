@@ -29,17 +29,17 @@
     </ul>
     <% end %>
     <form class="form-inline ml-auto">
+        <% if user_signed_in? %>
     <button class="btn btn-outline-success my-2 my-sm-0 mr-3" type="submit">
-    <% if user_signed_in? %>
       <%= link_to 'Logout', destroy_user_session_url, method: :delete %>
-    <% else %>
-      <%= link_to 'Login', '/users/sign_in' %>
-    <% end %>
     </button>
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+    <% else %>
+    <a class='btn btn-outline-success my-2 my-sm-0 mr-3' type='submit' href="/users/sign_in">Login</a>
+    <% end %>
+    
     <% if user_signed_in? %>
     <% else %>
-      <%= link_to 'Register', '/users/sign_up' %>
+    <a class='btn btn-outline-success my-2 my-sm-0' type='submit' href="/users/sign_up">Register</a>
     <% end %>
     </button>
   </form>
