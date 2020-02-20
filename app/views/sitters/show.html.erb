@@ -13,16 +13,22 @@
             <p>
               <h4 style="display:inline-block">Price: </h4><span> <%= @sitter.price%></span>
             </p>
-
+            
+            <%# display only if there are timeslots  %>
+            <% if !@sitter.timeslots.empty? %>
             <h4>Available Dates</h4>
             <% @sitter.timeslots.each do |t| %>
             <p><%= t.available_start_date.strftime("%d %b %Y")%> to <%= t.available_end_date.strftime("%d %b %Y")%></p>
             <% end %>
+            <% end %>
 
         </div>
         <div class="col mx-1 my-1" >
-          <div class="container-fluid ">
-            <%=image_tag "https://joomly.net/frontend/web/images/googlemap/map.png", :class =>'img-responsive', :style=>"width:100%;"%>
+          <div class="container-fluid h-100">
+          
+<iframe width="100%" height="100%" frameborder="0" style="border:0" class="img-responsive"
+src="https://www.google.com/maps/embed/v1/search?q=<%= @sitter.location.gsub(/\s+/, '+') %>,+Singapore&key=AIzaSyDM6u3QjmfqyheWkZCppGEO2C4jaqivepI" allowfullscreen></iframe>
+            <!-- <%=image_tag "https://joomly.net/frontend/web/images/googlemap/map.png", :class =>'img-responsive', :style=>"width:100%;"%> -->
           </div>
         </div>
       </div>
