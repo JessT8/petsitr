@@ -1,0 +1,80 @@
+<h1>User Bookings</h1>
+
+<% if @mybookings.length == 0 %>
+    <p>No Current Bookings</p>
+<% else %>
+    <table>
+        <tr>
+            <th>Sitter</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Status</th>
+        </tr>
+        <% @mybookings.each do |mybooking| %>
+            <tr>
+                <td><%= mybooking.sitter.user.username %></td>
+                <td><%= mybooking.start_date %></td>
+                <td><%= mybooking.end_date %></td >
+                <td>
+                    <% if mybooking.status == true %>
+                    Accepted
+                    <% elsif mybooking.status == false %>
+                    Declined
+                    <% else %>
+                    Pending
+                    <% end %>
+                </td>
+            </tr>
+        <% end %>
+    </table>
+<% end %>
+
+<h1>Sitter Bookings</h1>
+
+<% if @bookings.length > 0 %>
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        <% @bookings.each do |booking| %>
+            <tr>
+                <td><%= booking.user.username %></td>
+                <td><%= booking.start_date %></td>
+                <td><%= booking.end_date %></td >
+                <td>
+                    <% if booking.status == true %>
+                    Accepted
+                    <% elsif booking.status == false %>
+                    Declined
+                    <% else %>
+                    Pending
+                    <% end %>
+                </td>
+                <% if booking.status == nil %>
+                    <td>
+                        <%= form_with scope: :booking, model: @booking, method: "patch", local: true do |form| %>
+                            <%= form.hidden_field :status, :value => true %>
+                            <%= form.hidden_field :id, :value => booking.id %>
+                            <%= form.submit 'Accept'%>
+                        <% end %>
+                        <%= form_with scope: :booking, model: @booking, method: "patch", local: true do |form| %>
+                            <%= form.hidden_field :status, :value => false %>
+                            <%= form.hidden_field :id, :value => booking.id %>
+                            <%= form.submit 'Decline'%>
+                        <% end %>
+                    </td>
+                <% else %>
+                    <td>
+                        Completed
+                    </td>
+                <% end %>
+            </tr>
+        <% end %>
+    </table>
+<% else %>
+    <p>No Pending Sitter Bookings</p>
+<% end %>
