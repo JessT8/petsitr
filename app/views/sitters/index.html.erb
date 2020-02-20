@@ -1,18 +1,24 @@
 <section id="index">
 
+    <div class='container'>
+        <div class="row mt-2 d-flex justify-content-center">
+            <% @sitters.each do |sitter| %>
+            <div class="col-12 col-md-5 mt-4">
+                <div class="card profile-card-5">
+                    <div class="card-img-block">
+                        <img src='<%= sitter.picture %>' class="card-img-top" alt="Card image cap">
+                    </div>
+                    <div class="card-body pt-0">
+                        <h5 class="card-title"><%= sitter.user.username %></h5>
+                        <h3 class="card-text text-right text-muted"><%= sitter.price %></h3>
+                    </div>
+                    <a href='/sitters/<%= sitter.id %>' class='btn btn-success'>See Profile</a>
+                </div>
 
-<div class="row d-flex justify-content-even justify-content-center mt-3">
-<% @sitters.each do |sitter| %>
-    <div class="card col-4 mx-3 my-3">
-        <img src='<%= sitter.picture %>' class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title"><%= sitter.user.username %></h5>
-            <p class="card-text float-right"><%= sitter.price %></small></p>
-        </div>
-            <a href='/sitters/<%= sitter.id %>' class='btn btn-success'>See Profile</a>
+            </div>
+            <% end  %>
     </div>
-<% end  %>
-</div>
+    </div>
 
 
 

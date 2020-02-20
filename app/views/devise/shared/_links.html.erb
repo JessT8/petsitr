@@ -1,9 +1,9 @@
 <%- if controller_name != 'sessions' %>
-  <div class='mr-5 mt-3'><%= link_to "Log in", new_session_path(resource_name) %></div><br />
+  <div class='mr-5 mt-3 w-100'><%= link_to "Log in", new_session_path(resource_name), style: "color: #68A0C3;"%></div><br />
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <div class='mt-3'><%= link_to "Sign up", new_registration_path(resource_name) %></div><br />
+  <div class='mt-3 w-50'><%= link_to "Sign up", new_registration_path(resource_name), style: "color: #68A0C3;" %></div><br />
 <% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
