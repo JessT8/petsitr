@@ -33,12 +33,12 @@
   </p>
   <p>
     <%= form.label :available_start_time %>
-    <%= form.date_select :available_start_date %>
+    <%= form.date_select :available_start_date, order: [:day, :month, :year] %>
   </p>
 
   <p>
     <%= form.label :available_end_time %>
-    <%= form.date_select :available_end_date %>
+    <%= form.date_select :available_end_date, order: [:day, :month, :year] %>
   </p>
 
   <p>

@@ -13,8 +13,15 @@ Rails.application.routes.draw do
     patch '/sitters/:id' => 'sitters#update'
     get '/profile/edit/timeslots/:id' => 'timeslots#edit', as: 'edit_timeslot'
 
-    get '/bookings/new' => 'bookings#new', as: 'new_booking'
     patch '/profile/edit/timeslots/:id' => 'timeslots#update'
+
+    #testing bookings
+    get '/sitters/:id/bookings/new' => 'bookings#new', as: 'new_booking' #testing
+    get '/sitters/:id/bookings' => 'bookings#show', as: 'bookings'
+    post '/sitters/:id/bookings' => 'bookings#create', as: 'create_booking'
+    patch '/sitters/:id/bookings' => 'bookings#update', as: 'update_booking'
+
+    #testing timeslots
     get '/timeslots/new' => 'timeslots#new', as: 'new_timeslot' #for testing
     post '/timeslots' => 'timeslots#create' #for testing
 end

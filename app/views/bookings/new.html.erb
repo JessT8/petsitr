@@ -1,1 +1,28 @@
-<h1>Hello</h1>
+<h1>Bookings</h1>
+
+
+
+
+<h3>Available Timeslots</h3>
+<% @timeslots.each do |timeslot| %>
+    <label>Start Date :</label>
+    <p>
+        <%= timeslot.available_start_date %>
+    </p>
+    <label>End Date :</label>
+    <p>
+        <%= timeslot.available_end_date %>
+    </p>
+<% end %>
+
+<%= form_with scope: :booking, url: create_booking_path, local: true do |form| %>
+
+    <label>Start :</label>
+    <%= date_select :booking, :start_date %>
+    <br>
+    <label>End :</label>
+    <%= date_select :booking, :end_date %>
+    <br>
+    <%= form.submit %>
+
+<% end %>

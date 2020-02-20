@@ -1,0 +1,47 @@
+<h1>Hello I'm here</h1>
+
+
+
+
+<% if @bookings.length == 0 %>
+    <p>No Bookings</p>
+<% end %>
+
+
+<table>
+    <tr>
+        <th>User ID</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    <% @bookings.each do |booking| %>
+        <tr>
+            <td><%= booking.user.id %></td>
+            <td><%= booking.start_date %></td>
+            <td><%= booking.end_date %></td >
+            <td>
+                <% if booking.status == true %>
+                Accepted
+                <% elsif booking.status == false %>
+                Declined
+                <% else %>
+                Pending
+                <% end %>
+            </td>
+            <td>
+                <%= form_with scope: :booking, model: @booking, method: "patch", local: true do |form| %>
+                    <%= form.hidden_field :status, :value => true %>
+                    <%= form.hidden_field :id, :value => booking.id %>
+                    <%= form.submit 'Accept'%>
+                <% end %>
+                <%= form_with scope: :booking, model: @booking, method: "patch", local: true do |form| %>
+                    <%= form.hidden_field :status, :value => false %>
+                    <%= form.hidden_field :id, :value => booking.id %>
+                    <%= form.submit 'Decline'%>
+                <% end %>
+            </td>
+        </tr>
+    <% end %>
+</table>
