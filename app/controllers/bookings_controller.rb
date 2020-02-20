@@ -28,29 +28,40 @@ class BookingsController < ApplicationController
         @bookings = Booking.where(sitter: @sitter)
     end
 
+    def user_show
+        @mybookings = Booking.where(user: current_user)
+        @bookings = Booking.where(sitter: current_user.sitter)
+    end
+
     def update
         @book = Booking.new(booking_params);
         @booking = Booking.find(@book.id);
         if @book.status == true
-            @booking.update(status: true)
-
             timeslots = Timeslot.all
 
             timeslots.each do |timeslot|
+
                 if @booking.start_date >= timeslot.available_start_date && @booking.end_date <= timeslot.available_end_date
                     @timeslot = timeslot
                 end
             end
+
             if @booking.start_date == @timeslot.available_start_date && @booking.end_date < @timeslot.available_end_date
                 @timeslot.update(available_start_date: @booking.end_date)
+                @booking.update(status: true)
             elsif @booking.end_date == @timeslot.available_end_date && @booking.start_date > @timeslot.available_start_date
                 @timeslot.update(available_end_date: @booking.start_date)
+                @booking.update(status: true)
             elsif @booking.start_date > @timeslot.available_start_date && @booking.end_date < @timeslot.available_end_date
                 new_timeslot = Timeslot.new(available_start_date: @timeslot.available_start_date, available_end_date: @booking.start_date, sitter: @timeslot.sitter)
                 new_timeslot.save
                 @timeslot.update(available_start_date: @booking.end_date)
-            else
+                @booking.update(status: true)
+            elsif @booking_start_date == @timeslot.available_start_date && @booking.end_date == @timeslot.available_end_date
                 @timeslot.destroy
+                @booking.update(status: true)
+            else
+                render "show"
             end
         else
             @booking.update(status: false)
