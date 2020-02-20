@@ -14,15 +14,15 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-expand navbar-light bg-light fixed-top">
-  <a class="navbar-brand" href="/">PetSitr</a>
+  <nav class="navbar navbar-expand navbar-dark fixed-top">
+  <a class="navbar-brand ml-5" href="/">PetSitr</a>
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
    <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <% if user_signed_in? %>
     <ul class="navbar-nav mx-auto">
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="/profile">Profile</a>
         </div>
       </li>
@@ -30,16 +30,14 @@
     <% end %>
     <form class="form-inline ml-auto">
         <% if user_signed_in? %>
-    <button class="btn btn-outline-success my-2 my-sm-0 mr-3" type="submit">
-      <%= link_to 'Logout', destroy_user_session_url, method: :delete %>
-    </button>
+      <%= link_to 'Logout', destroy_user_session_url, method: :delete, class: "btn btn-outline-success text-light my-2 my-sm-0 mr-3" %>
     <% else %>
-    <a class='btn btn-outline-success my-2 my-sm-0 mr-3' type='submit' href="/users/sign_in">Login</a>
+    <a class='btn btn-outline-success text-light my-2 my-sm-0 mr-3' type='submit' href="/users/sign_in">Login</a>
     <% end %>
     
     <% if user_signed_in? %>
     <% else %>
-    <a class='btn btn-outline-success my-2 my-sm-0' type='submit' href="/users/sign_up">Register</a>
+    <a class='btn btn-outline-success text-light my-2 my-sm-0' type='submit' href="/users/sign_up">Register</a>
     <% end %>
     </button>
   </form>

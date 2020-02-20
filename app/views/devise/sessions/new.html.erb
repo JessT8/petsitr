@@ -2,14 +2,14 @@
 
 <div class="row h-100">
   <div class='col'>
-    <div class='col h-100 d-flex flex-column align-items-center justify-content-center'>
+    <div class='col h-100 d-flex flex-column align-items-center mt-5'>
       <h1 class='display-1'>About</h1>
       <p class='first-line'>Example text about our site</p>
       <p>Example text about our site</p>
       <p>Example text about our site</p>
     </div>
   </div>
-  <div class='col d-flex flex-column align-items-center justify-content-center'>
+  <div class='col d-flex flex-column align-items-center mt-5'>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
   <p><%= f.label :login %><br />
@@ -29,11 +29,14 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in", class: "btn btn-outline-success" %><span><%= render "devise/shared/links" %></span>
   </div>
+
+  
 <% end %>
 
-<%= render "devise/shared/links" %>
+
+
   </div>
 </div>
 
