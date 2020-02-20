@@ -1,1 +1,20 @@
-<%= @sitter.user.username %>
+<div class="container h-100">
+<h1><%= @sitter.user.username%> <span style="font-size:20px">
+<div class="row justify-content-center align-self-center">
+	<div class="col mx-auto">
+	<img src='<%= @sitter.picture %>'alt="..." class ='img-responsive' style="width:25%">
+  <h4>About me</h4>
+  <p><%= @sitter.description%></p>
+  <p><h4 style="display:inline-block">Price: </h4><span> <%= @sitter.price%></span></p>
+  <h4>Available Dates</h4>
+  <% @sitter.timeslots.each do |t| %>
+  <p><%= t.available_start_date.strftime("%d %b %Y")%> to <%= t.available_end_date.strftime("%d %b %Y")%></p>
+  <% end %>
+</div>
+   <div class="col mx-1 my-1">
+   	<div class="container-fluid">
+   	<%=image_tag "https://joomly.net/frontend/web/images/googlemap/map.png", :class =>'img-responsive', :style=>"width:100%"%>
+   </div>
+   </div>
+</div>
+</div>
