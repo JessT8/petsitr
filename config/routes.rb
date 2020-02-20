@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     #testing bookings
     get '/sitters/:id/bookings/new' => 'bookings#new', as: 'new_booking' #testing
     get '/sitters/:id/bookings' => 'bookings#show', as: 'bookings'
+    get '/users/bookings' => 'bookings#user_show'
     post '/sitters/:id/bookings' => 'bookings#create', as: 'create_booking'
     patch '/sitters/:id/bookings' => 'bookings#update', as: 'update_booking'
 
