@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-
+  before_action :authenticate_user!
     def new
         @sitter = Sitter.find(params[:id])
         @timeslots = Timeslot.where(sitter: @sitter)
@@ -9,10 +9,9 @@ class BookingsController < ApplicationController
         @booking = Booking.new(booking_params)
         @sitter = Sitter.find(params[:id])
 
-        @timeslots = Timeslot.all
-
+        @timeslots = Timeslot.where(sitter: @sitter)
         @timeslots.each do |timeslot|
-            if @booking.start_date >= timeslot.available_start_date && @booking.end_date <= timeslot.available_end_date
+            if (@booking.start_date >= timeslot.available_start_date && @booking.end_date <= timeslot.available_end_date)
                 @timeslot = timeslot
                 @booking.sitter = @sitter
                 @booking.user = current_user
