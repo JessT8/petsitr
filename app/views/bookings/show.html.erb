@@ -1,58 +1,72 @@
-<div class="container h-100">
-	<h1>User Bookings</h1>
+<div class="container h-100" id="show_booking">
+	<h1>Bookings sent</h1>
 
-	<% if @mybookings.length == 0 %>
-	    <p>No Current Bookings</p>
-	<% else %>
-	    <table>
-	        <tr>
-	            <th>Sitter</th>
-	            <th>Start</th>
-	            <th>End</th>
-	            <th>Cost</th>
-	            <th>Status</th>
-	        </tr>
-	        <% @mybookings.each do |mybooking| %>
-	            <tr>
-	                <td><%= mybooking.sitter.user.username %></td>
-	                <td><%= mybooking.start_date %></td>
-	                <td><%= mybooking.end_date %></td >
-	                <% days =  mybooking.end_date - mybooking.start_date %>
-
-	                <td>$<%= mybooking.sitter.price.to_i * (days.to_i + 1) %></td>
-	                <td>
-	                    <% if mybooking.status == true %>
-	                    Accepted
-	                    <% elsif mybooking.status == false %>
-	                    Declined
-	                    <% else %>
-	                    Pending
-	                    <% end %>
-	                </td>
-	            </tr>
-	        <% end %>
-	    </table>
-	<% end %>
-
-	<h1>Sitter Bookings</h1>
-
-	<% if @bookings.length > 0 %>
-	    <table>
-	        <tr>
-	            <th>User</th>
-	            <th>Start Date</th>
-	            <th>End Date</th>
-	            <th>Price</th>
-	            <th>Status</th>
-	            <th>Action</th>
-	        </tr>
+		<% if @mybookings.length == 0 %>
+				<div class=row>
+		    	<div class="col">No Current Bookings</div>
+		  	</div>
+		<% else %>
+			<div class=row>
+				<div class="col"><strong>Sitter</strong></div>
+	      <div class="col"><strong>Start</strong></div>
+	      <div class="col"><strong>End</strong></div>
+	      <div class="col"><strong>Cost</strong></div>
+	      <div class="col"><strong>Status</strong></div>
+    </div>
+    	<% @mybookings.each do |mybooking| %>
+    	<div class=row>
+				<div class="col">
+					<%= mybooking.sitter.user.username %>
+				</div>
+		    <div class="col">
+		    	<%= mybooking.start_date.strftime("%d %b %Y") %>
+		    </div>
+		    <div class="col">
+		    	<%= mybooking.end_date.strftime("%d %b %Y") %>
+		    </div>
+		    <div class="col">
+		    	<% days =  mybooking.end_date - mybooking.start_date %>
+		    	$<%= mybooking.sitter.price.to_i * (days.to_i + 1) %>
+		    </div>
+		    <div class="col">
+		    	<% if mybooking.status == true %>
+		        Accepted
+		    	<% elsif mybooking.status == false %>
+		        Declined
+		      <% else %>
+		        Pending
+		      <% end %>
+	    </div>
+	    <% end %>
+	  </div>
+	     <% end %>
+	       <% if current_user.sitter %>
+	    	<h1>Bookings received</h1>
+	    	<% if @bookings.length > 0 %>
+		  		<div class=row>
+	            <div class="col"><strong>User</strong></div>
+	            <div class="col"><strong>Start Date</strong></div>
+	            <div class="col"><strong>End Date</strong></div>
+	            <div class="col"><strong>Price</strong></div>
+	            <div class="col"><strong>Status</strong></div>
+	            <div class="col"><strong>Action</strong></div>
+	        </div>
 	        <% @bookings.each do |booking| %>
-	            <tr>
-	                <td><%= booking.user.username %></td>
-	                <td><%= booking.start_date %></td>
-	                <td><%= booking.end_date %></td >
-	                <td>$ <% booking.sitter.price.to_i * (booking.start_date - booking.end_date) %></td>
-	                <td>
+	            <div class=row>
+	                <div class="col">
+	                	<%= booking.user.username %>
+	                </div>
+	                <div class="col">
+	                	<%= booking.start_date.strftime("%d %b %Y") %>
+	                </div>
+	                <div class="col">
+	                	<%= booking.end_date.strftime("%d %b %Y") %>
+	                </div>
+	               	<div class="col">
+	               		<% days =  booking.end_date - booking.start_date %>
+	               		$<%= booking.sitter.price.to_i * (days.to_i + 1) %>
+	               	</div>
+	                <div class="col">
 	                    <% if booking.status == true %>
 	                    Accepted
 	                    <% elsif booking.status == false %>
@@ -60,29 +74,33 @@
 	                    <% else %>
 	                    Pending
 	                    <% end %>
-	                </td>
-	                <% if booking.status == nil %>
-	                    <td>
+	                </div>
+	                <div class="col">
+	                	<% if booking.status == nil %>
+	                	    	<div class="row">
 	                        <%= form_with scope: :booking, model: @booking, method: "patch", local: true do |form| %>
+
 	                            <%= form.hidden_field :status, :value => true %>
 	                            <%= form.hidden_field :id, :value => booking.id %>
-	                            <%= form.submit 'Accept'%>
+	                            <%= form.submit 'Accept', :class=>"btn btn-outline-success", :style=>"margin:0 10px"%>
 	                        <% end %>
 	                        <%= form_with scope: :booking, model: @booking, method: "patch", local: true do |form| %>
-	                            <%= form.hidden_field :status, :value => false %>
+	                        	<%= form.hidden_field :status, :value => false %>
 	                            <%= form.hidden_field :id, :value => booking.id %>
-	                            <%= form.submit 'Decline'%>
+	                            <%= form.submit 'Decline', :class=>"btn btn-outline-danger"%>
+
 	                        <% end %>
-	                    </td>
-	                <% else %>
-	                    <td>
+	                        </div>
+	               		<% else %>
+	                    <div class="row">
 	                        Completed
-	                    </td>
+	                    </div>
 	                <% end %>
-	            </tr>
+	            </div>
 	        <% end %>
-	    </table>
 	<% else %>
 	    <p>No Pending Sitter Bookings</p>
 	<% end %>
+	<% end %>
+</div>
 </div>
