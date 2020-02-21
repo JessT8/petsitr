@@ -16,7 +16,7 @@ class BookingsController < ApplicationController
                 @booking.sitter = @sitter
                 @booking.user = current_user
                 @booking.save
-                redirect_to(@sitter) and return
+                redirect_to(bookings_path) and return
             end
         end
         redirect_back(fallback_location: root_path)
@@ -31,7 +31,7 @@ class BookingsController < ApplicationController
         @book = Booking.new(booking_params);
         @booking = Booking.find(@book.id);
         if @book.status == true
-            timeslots = Timeslot.all
+            timeslots = Timeslot.where(sitter: current_user.sitter)
 
             timeslots.each do |timeslot|
 
@@ -43,6 +43,7 @@ class BookingsController < ApplicationController
             if @booking.start_date == @timeslot.available_start_date && @booking.end_date < @timeslot.available_end_date
                 @timeslot.update(available_start_date: @booking.end_date)
                 @booking.update(status: true)
+
             elsif @booking.end_date == @timeslot.available_end_date && @booking.start_date > @timeslot.available_start_date
                 @timeslot.update(available_end_date: @booking.start_date)
                 @booking.update(status: true)
