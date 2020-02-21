@@ -16,9 +16,7 @@
     	<% @mybookings.each do |mybooking| %>
     	<div class=row>
 				<div class="col">
-				<% link_to sitter_path(mybooking.sitter.user.id) do%>
 					<%= mybooking.sitter.user.username %>
-					<% end %>
 				</div>
 		    <div class="col">
 		    	<%= mybooking.start_date.strftime("%d %b %Y") %>
