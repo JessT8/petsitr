@@ -31,7 +31,12 @@ user = User.create(:email=>'admin@email.com', :password=>"password123", :usernam
           phone: FFaker::PhoneNumberSG.phone_number,
           price: '40',
           is_visible: true,
-          picture: FFaker::Image.url(size = '300x300', format = 'png', bg_color = :random, text_color = :random, text = nil)
+          picture: FFaker::Image.url(size = '300x300', format = 'png', bg_color = :random, text_color = :random, text = nil),
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a venenatis dolor. Donec eleifend, nisl non ultrices pulvinar, mi sapien accumsan nisl, non suscipit risus metus nec leo. Ut vitae dictum sapien, sit amet porttitor mauris. Nam vel luctus libero. Vestibulum eleifend ante neque, non vehicula est faucibus et. Ut mattis ac enim non egestas. Suspendisse auctor vitae diam a dapibus. Sed ultrices nec erat vel consequat. Integer a eros nec mi vestibulum fermentum. Nunc non mauris et orci cursus commodo sit amet sit amet urna. Cras sagittis faucibus leo, sed vulputate magna interdum auctor.
+
+          Quisque eu ligula ante. Vivamus viverra mollis rhoncus. In sit amet ornare nibh, et mollis sem. Donec aliquam cursus accumsan. In rhoncus imperdiet tempus. Suspendisse sit amet laoreet orci, sit amet lacinia ex. Nulla ac nisl quis ligula mollis accumsan nec ut velit.
+          
+          Donec fermentum facilisis lectus, non dictum ante. Duis semper augue lacinia, mollis felis eget, finibus est. Ut ornare tincidunt"
         )
       pet_sitter.pets << dog
     Timeslot.create(

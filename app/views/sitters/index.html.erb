@@ -4,14 +4,14 @@
     <h1 class="text-center pt-3">Pet Sitters</h1>
         <div class="row mt-2 d-flex justify-content-center">
             <% @sitters.each do |sitter| %>
-            <div class="col-12 col-md-5 mt-4">
+            <div class="col-12 col-md-4 mt-4">
                 <div class="card profile-card-5">
                     <div class="card-img-block">
                         <img src='<%= sitter.picture %>' class="card-img-top" alt="Card image cap">
                     </div>
                     <div class="card-body pt-0">
                         <h5 class="card-title"><%= sitter.user.username %></h5>
-                        <h3 class="card-text text-right text-muted"><%= sitter.price %></h3>
+                        <h3 class="card-text text-right text-muted">$<%= sitter.price %></h3>
                     </div>
                     <a href='/sitters/<%= sitter.id %>' class='btn btn-success'>See Profile</a>
                 </div>

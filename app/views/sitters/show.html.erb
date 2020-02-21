@@ -2,6 +2,7 @@
   <h1>Hi! I am <%= @sitter.user.username%> <span style="font-size:20px">
       <div class="row justify-content-center align-self-center">
         <div class="col mx-auto">
+
           <img src='<%= @sitter.picture %>' alt="..." class='img-responsive' style="width:25%">
 
           <h5>Preferred Animals:</p>
@@ -10,6 +11,7 @@
               <li style='display: inline;'>● <%= pet.animal %>s</li>
               <% end %>
             </ul>
+
             <p>
               <h4 style="display:inline-block">Price: </h4><span> <%= @sitter.price%></span>
             </p>
@@ -28,15 +30,18 @@
         </div>
         <div class="col mx-1 my-1">
           <div class="container-fluid h-100">
-
+            <% if @sitter.location %>
             <iframe width="100%" height="100%" frameborder="0" style="border:0" class="img-responsive"
               src="https://www.google.com/maps/embed/v1/search?q=<%= @sitter.location.gsub(/\s+/, '+') %>,+Singapore&key=..."
               allowfullscreen></iframe>
-            <!-- <%=image_tag "https://joomly.net/frontend/web/images/googlemap/map.png", :class =>'img-responsive', :style=>"width:100%;"%> -->
+            <% else %>
+            <%=image_tag "https://joomly.net/frontend/web/images/googlemap/map.png", :class =>'img-responsive', :style=>"width:100%;"%>
+            <% end %>
           </div>
         </div>
+        
       </div>
-      <div class="row justify-content-center align-self-center mt-5">
+      <div class="row d-flex flex-row justify-content-center align-self-center mt-5">
         <h4>About me</h4>
         <p><%= @sitter.description%></p>
       </div>
