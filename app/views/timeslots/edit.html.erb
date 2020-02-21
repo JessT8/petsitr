@@ -1,19 +1,18 @@
 <h1>Edit Timeslot</h1>
 
 <%= form_with scope: :timeslot, model: @timeslots, method: "patch", local: true do |form| %>
-
-    <p>
-        <%= form.label :available_start_date %>
-        <%= form.date_select :available_start_date %>
-    </p>
-
-    <p>
-        <%= form.label :available_end_date %>
-        <%= form.date_select :available_end_date %>
-    </p>
-
-    <p>
-    <%= form.submit %>
-    </p>
+  		<div class="form-row ">
+  			<div class="form-group col-md-6 ">
+  				<%= form.label :available_start_date %><br>
+  				<%= form.text_field :available_start_date , :type=>"date", :class=>"form-control", :min=>Time.now.strftime("%Y-%M-%d") %>
+  			</div>
+  			<div class="form-group col-md-6">
+  				<%= form.label :available_end_date %><br>
+  				<%= form.text_field :available_end_date , :type=>"date", :class=>"form-control", :min=>Time.now.strftime("%Y-%M-%d") %>
+  			</div>
+  		</div>
+ 		<div class="actions">
+  			<%= form.submit class: "btn btn-outline-success" %>
+  		</div>
 
 <% end %>

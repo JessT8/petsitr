@@ -7,8 +7,15 @@
   <p><%= @sitter.description%></p>
   <p><h4 style="display:inline-block">Price: </h4><span> $<%= @sitter.price%></span></p>
   <h4>Available Dates</h4>
-  <% @sitter.timeslots.each do |t| %>
-  <p><%= t.available_start_date.strftime("%d %b %Y")%> to <%= t.available_end_date.strftime("%d %b %Y")%></p>
+  <% if !@sitter.timeslots.empty? %>
+
+	  <% @sitter.timeslots.each do |t| %>
+	 <%= link_to edit_timeslot_path(t.id) do %>
+	  <p><%= t.available_start_date.strftime("%d %b %Y")%> to <%= t.available_end_date.strftime("%d %b %Y")%></p>
+		<% end %>
+  	<% end %>
+  <%else %>
+  <p>No available timeslot</p>
   <% end %>
 </div>
    <div class="col mx-1 my-1">
