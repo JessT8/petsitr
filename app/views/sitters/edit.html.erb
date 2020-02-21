@@ -16,7 +16,7 @@
   </p>
   <p>
     <%= form.label :about %><br>
-    <%= form.text_field :description %>
+    <%= form.text_area :description, :class=>"form-control", :rows => 3, :style=>"resize:none;", :maxlength=>"1000" %>
   </p>
   <p>
     <%= form.label :avatar_url %><br>

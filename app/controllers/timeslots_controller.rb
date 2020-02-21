@@ -26,7 +26,7 @@ class TimeslotsController < ApplicationController
     def update
         @timeslot = Timeslot.find(params[:id])
         @timeslot.update(timeslot_params)
-        redirect_to edit_profile_path
+        redirect_to profile_path
     end
 
 private

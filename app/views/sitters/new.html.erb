@@ -12,7 +12,7 @@
   				</span>
   			</div>
   			<div class="form-group col-md-6">
-  				<%= form.label :price_per_day%><br>
+  				<%= form.label :price_per_day_in%> $<br>
   				<%= form.text_field :price, :class=>"form-control" %>
   			</div>
   		</div>
@@ -47,7 +47,7 @@
   				<%=label_tag "Pet preferences:"%>
   				<%= form.collection_check_boxes(:pet_ids, @pets, :id, :animal) do |a| %>
   				<%= a.label class:"label-checkbox" do%>
-  				<%=a.check_box + " " + a.text%>
+  				<%=a.check_box + " " + a.text%>s
   				<%end%>
   				<% end %>
   			</div>
