@@ -2,9 +2,18 @@ class SittersController < ApplicationController
   before_action :authenticate_user!
 
       def index
-        @sitters = Sitter.where(:is_visible => true).where.not(:user => current_user)
+          @sitters = Sitter.where(:is_visible => true).where.not(:user => current_user)
+          @msg = ""
       end
+      def search
+         @timeslot = Timeslot.where("available_start_date <= ? and available_end_date >= ?",timeslot_params[:available_start_date],timeslot_params[:available_end_date])
 
+         @sitters = @timeslot.map { |timeslot| timeslot.sitter}
+         @searchtime = Timeslot.new(timeslot_params)
+         @msg = "You've searched for " + @searchtime.available_start_date. strftime("%d %b %Y") + " to " + @searchtime.available_end_date. strftime("%d %b %Y")
+
+         render "index"
+      end
       def profile
         @sitter = Sitter.find_by(user: current_user)
         if @sitter
