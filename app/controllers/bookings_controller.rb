@@ -51,11 +51,11 @@ class BookingsController < ApplicationController
                 new_timeslot.save
                 @timeslot.update(available_start_date: @booking.end_date)
                 @booking.update(status: true)
-            elsif @booking_start_date == @timeslot.available_start_date && @booking.end_date == @timeslot.available_end_date
+            elsif @booking.start_date == @timeslot.available_start_date && @booking.end_date == @timeslot.available_end_date
                 @timeslot.destroy
                 @booking.update(status: true)
             else
-                render "show"
+                render plain: "SOMETHING IS WRONG IN BOOKING UPDATE"
             end
         else
             @booking.update(status: false)
