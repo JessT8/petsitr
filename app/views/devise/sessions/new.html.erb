@@ -5,8 +5,8 @@
     <div class='col-12 h-100 d-flex flex-column align-items-center mt-5'>
       <h1 class='display-1'>About</h1>
       <p class='first-line'>Example text about our site</p>
-      <p>Example text about our site</p>
-      <p>Example text about our site</p>
+      <p class="d-none d-lg-block">Example text about our site</p>
+      <p class="d-none d-lg-block">Example text about our site</p>
     </div>
   </div>
   <div class='col-12 col-lg d-flex flex-column align-items-center mt-5'>
@@ -32,7 +32,7 @@
     <%= f.submit "Log in", class: "btn btn-outline-success" %><span><%= render "devise/shared/links" %></span>
   </div>
   <% if resource.errors.messages %>
-    <p class='text-danger'>Login failed!</p>
+    <p class='text-danger pt-3'>Login failed!</p>
   <% end %>
   
 <% end %>
