@@ -1,13 +1,18 @@
-<h1>HELLO</h1>
+<h1>Add New Timeslot</h1>
 
 <%= form_with scope: :timeslot, url: timeslots_path, local: true do |form| %>
-    <label>Start :</label>
-    <%= date_select :timeslot, :available_start_date %>
-    <br>
-    <label>End :</label>
-    <%= date_select :timeslot, :available_end_date %>
-    <br>
-    <%= form.submit %>
-
+        <div class="form-row ">
+            <div class="form-group col-md-6 ">
+                <%= form.label :available_start_date %><br>
+                <%= form.text_field :available_start_date , :type=>"date", :class=>"form-control", :min=>Date.today %>
+            </div>
+            <div class="form-group col-md-6">
+                <%= form.label :available_end_date %><br>
+                <%= form.text_field :available_end_date , :type=>"date", :class=>"form-control", :min=>Date.today %>
+            </div>
+        </div>
+        <div class="actions">
+            <%= form.submit class: "btn btn-outline-success" %>
+        </div>
 
 <% end %>
