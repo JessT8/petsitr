@@ -28,7 +28,7 @@ class BookingsController < ApplicationController
     end
 
     def update
-        byebug
+        
         @book = Booking.new(booking_params);
         @booking = Booking.find(@book.id);
         if @book.status == true
