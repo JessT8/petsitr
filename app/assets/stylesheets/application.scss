@@ -23,7 +23,9 @@ $supplement-color: #6FB3B8;
 $contrast-color: #388087;
 $button-color: #68A0C3;
 
-.field_with_errors { display: inline; }
+.field_with_errors {
+  display: inline;
+}
 
 html {
   height: 100%;
@@ -45,22 +47,29 @@ body {
     color: white;
   }
 
-  .btn:hover, .btn-outline-success:hover{
+  .btn:hover,
+  .btn-outline-success:hover {
     background-color: #5683A0;
     border-color: #5683A0;
-    color: white!important;
+    color: white !important;
   }
 
-  .btn, .btn-outline-success {
+  .btn,
+  .btn-outline-success {
     border-color: $button-color;
     background-color: $button-color;
   }
 
-  .btn:focus, .btn:active, .btn:active:focus, .btn-outline-success:focus, .btn-outline-success:active, .btn-outline-success:active:focus {
+  .btn:focus,
+  .btn:active,
+  .btn:active:focus,
+  .btn-outline-success:focus,
+  .btn-outline-success:active,
+  .btn-outline-success:active:focus {
     outline: none !important;
     box-shadow: none !important;
-    background-color: $button-color!important;
-    border: none!important
+    background-color: $button-color !important;
+    border: none !important
   }
 }
 
@@ -79,22 +88,29 @@ body {
     left: 50px;
   }
 
-  .btn:hover, .btn-outline-success:hover{
+  .btn:hover,
+  .btn-outline-success:hover {
     background-color: $button-color;
     border-color: $button-color;
-    color: white!important;
+    color: white !important;
   }
 
-  .btn, .btn-outline-success {
+  .btn,
+  .btn-outline-success {
     border-color: $button-color;
     color: $button-color;
   }
 
-  .btn:focus, .btn:active, .btn:active:focus, .btn-outline-success:focus, .btn-outline-success:active, .btn-outline-success:active:focus {
+  .btn:focus,
+  .btn:active,
+  .btn:active:focus,
+  .btn-outline-success:focus,
+  .btn-outline-success:active,
+  .btn-outline-success:active:focus {
     outline: none !important;
     box-shadow: none !important;
-    background-color: $button-color!important;
-    border: none!important
+    background-color: $button-color !important;
+    border: none !important
   }
 
 }
@@ -108,32 +124,41 @@ body {
   background-position-y: -130px;
   background-repeat: no-repeat;
 
-  .btn:hover, .btn-outline-success:hover{
+  .btn:hover,
+  .btn-outline-success:hover {
     background-color: $button-color;
     border-color: $button-color;
-    color: white!important;
+    color: white !important;
   }
 
-  .btn, .btn-outline-success {
+  .btn,
+  .btn-outline-success {
     border-color: $button-color;
     color: $button-color;
   }
 
-  .btn:focus, .btn:active, .btn:active:focus, .btn-outline-success:focus, .btn-outline-success:active, .btn-outline-success:active:focus {
+  .btn:focus,
+  .btn:active,
+  .btn:active:focus,
+  .btn-outline-success:focus,
+  .btn-outline-success:active,
+  .btn-outline-success:active:focus {
     outline: none !important;
     box-shadow: none !important;
-    background-color: $button-color!important;
-    border: none!important
+    background-color: $button-color !important;
+    border: none !important
   }
 }
 
 // main page
 #index {
   // background-color: $main-color;
-  background-image: url('https://ak0.picdn.net/shutterstock/videos/1024340720/thumb/3.jpg');
-  background-position: center;
+  background-image: image-url('paws.jpg');
+  background-size: auto;
+  background-position: absolute;
   background-repeat: repeat-y;
-  margin-bottom: 56px;
+  background-attachment: fixed;
+  padding-bottom: 56px;
 
   .card {
     padding: 0 0;
@@ -141,6 +166,7 @@ body {
     .card-body {
       padding-bottom: 5px;
       position: relative;
+      
 
       .animals {
         width: 30%;
@@ -156,6 +182,7 @@ body {
   .profile-card-5 {
     margin-top: 20px;
     position: relative;
+    max-width: 350px;
 
     .profile-link {
       position: absolute;
@@ -186,22 +213,29 @@ body {
       width: 28%;
     }
 
-    .btn:hover, .btn-outline-success:hover{
+    .btn:hover,
+    .btn-outline-success:hover {
       background-color: #5683A0;
       border-color: #5683A0;
-      color: white!important;
+      color: white !important;
     }
 
-    .btn, .btn-outline-success {
+    .btn,
+    .btn-outline-success {
       border-color: $button-color;
       background-color: $button-color;
     }
 
-    .btn:focus, .btn:active, .btn:active:focus, .btn-outline-success:focus, .btn-outline-success:active, .btn-outline-success:active:focus {
+    .btn:focus,
+    .btn:active,
+    .btn:active:focus,
+    .btn-outline-success:focus,
+    .btn-outline-success:active,
+    .btn-outline-success:active:focus {
       outline: none !important;
       box-shadow: none !important;
-      background-color: #5683A0!important;
-      border: none!important
+      background-color: #5683A0 !important;
+      border: none !important
     }
 
     h5 {
@@ -219,65 +253,94 @@ body {
 }
 
 // profile creation
-#new-profile, #book{
-  background-image: url('https://ak0.picdn.net/shutterstock/videos/1024340720/thumb/3.jpg');
-  background-position: bottom;
+#new-profile,
+#book {
+  background-image: image-url('paws.jpg');
+  background-position: absolute;
+  background-repeat: repeat-y;
+  background-attachment: fixed;
+  padding-bottom: 56px;
 
-	 .btn:hover, .btn-outline-success:hover{
-      background-color: #5683A0;
-      border-color: #5683A0;
-      color: white!important;
-    }
+  .btn:hover,
+  .btn-outline-success:hover {
+    background-color: #5683A0;
+    border-color: #5683A0;
+    color: white !important;
+  }
 
-    .btn, .btn-outline-success {
-      border-color: $button-color;
-      background-color: $button-color;
-      color: white!important;
-    }
+  .btn,
+  .btn-outline-success {
+    border-color: $button-color;
+    background-color: $button-color;
+    color: white !important;
+  }
 
-    .btn:focus, .btn:active, .btn:active:focus, .btn-outline-success:focus, .btn-outline-success:active, .btn-outline-success:active:focus {
-      outline: none !important;
-      box-shadow: none !important;
-      background-color: #5683A0!important;
-      border: none!important
-    }
-    .error{
-    	color:red;
-    	font-size:14px;
-    }
+  .btn:focus,
+  .btn:active,
+  .btn:active:focus,
+  .btn-outline-success:focus,
+  .btn-outline-success:active,
+  .btn-outline-success:active:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: #5683A0 !important;
+    border: none !important
+  }
+
+  .error {
+    color: red;
+    font-size: 14px;
+  }
 }
 
 #edit-profile {
-  .btn:hover, .btn-outline-success:hover{
+  background-image: image-url('paws.jpg');
+  background-position: absolute;
+  background-repeat: repeat-y;
+  background-attachment: fixed;
+  padding-bottom: 56px;
+
+  .btn:hover,
+  .btn-outline-success:hover {
     background-color: #5683A0;
     border-color: #5683A0;
-    color: white!important;
+    color: white !important;
   }
 
-  .btn, .btn-outline-success {
+  .btn,
+  .btn-outline-success {
     border-color: $button-color;
     background-color: $button-color;
-    color: white!important;
+    color: white !important;
   }
 
-  .btn:focus, .btn:active, .btn:active:focus, .btn-outline-success:focus, .btn-outline-success:active, .btn-outline-success:active:focus {
+  .btn:focus,
+  .btn:active,
+  .btn:active:focus,
+  .btn-outline-success:focus,
+  .btn-outline-success:active,
+  .btn-outline-success:active:focus {
     outline: none !important;
     box-shadow: none !important;
-    background-color: #5683A0!important;
-    border: none!important
+    background-color: #5683A0 !important;
+    border: none !important
   }
-  .error{
-    color:red;
-    font-size:14px;
+
+  .error {
+    color: red;
+    font-size: 14px;
   }
 }
 
 // current user profile page
 #profile {
+  background-image: image-url('paws.jpg');
+  background-position: absolute;
+  background-repeat: repeat-y;
+  background-attachment: fixed;
+  padding-bottom: 56px;
 
 }
 
 // sitter profile page
-#sitter-profile {
-
-}
+// #sitter-profile {}
