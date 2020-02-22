@@ -8,19 +8,18 @@ Rails.application.routes.draw do
     get '/profile' => 'sitters#profile', as: 'profile'
     get '/profile/new' => 'sitters#new', as: 'new_profile'
     post '/profile' => 'sitters#create'
+    post '/index' => 'sitters#search', as: 'search'
 
     get '/profile/edit' => 'sitters#edit', as: 'edit_profile'
     patch '/sitters/:id' => 'sitters#update'
     get '/profile/edit/timeslots/:id' => 'timeslots#edit', as: 'edit_timeslot'
     patch '/profile/edit/timeslots/:id' => 'timeslots#update'
 
-    #testing bookings
     get '/sitters/:id/bookings/new' => 'bookings#new', as: 'new_booking' #testing
     get '/users/bookings' => 'bookings#show', as: 'bookings'
     post '/sitters/:id/bookings' => 'bookings#create', as: 'create_booking'
     patch '/users/bookings' => 'bookings#update', as: 'update_booking'
 
-    #testing timeslots
     get '/timeslots/new' => 'timeslots#new', as: 'new_timeslot'
     post '/timeslots' => 'timeslots#create'
 end

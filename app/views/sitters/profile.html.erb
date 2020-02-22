@@ -1,17 +1,24 @@
-<div class="container h-100">
-  <div class="row justify-content-center align-self-center pt-3">
-    <div class="col mx-auto d-flex flex-column">
-      <h1 class="align-self-center"><%= @sitter.user.username%> <span style="font-size:20px"><%= link_to 'Edit', edit_profile_path %></span></h1>
-      <img src='<%= @sitter.picture %>' alt="..." class='img-responsive align-self-center mb-3' style="width:75%; border-radius: 50px">
-        <h4 class="text-center"><% @sitter.pets.each do |pet| %><span>● <%= pet.animal %>s </span><% end %>
+<section id="profile">
+  <div class="container h-100">
+    <div class="row justify-content-center align-self-center pt-3">
+
+      <div class="col mx-auto d-flex flex-column">
+        <h1 class="align-self-center"><%= @sitter.user.username%> <span
+          style="font-size:20px"><%= link_to 'Edit', edit_profile_path %></span></h1>
+        <img src='<%= @sitter.picture %>' alt="..." class='img-responsive align-self-center mb-3'
+        style="width:75%; border-radius: 50px">
+        <h4 class="text-center">
+        <% @sitter.pets.each do |pet| %>
+          <span>● <%= pet.animal %>s </span>
+        <% end %>
         <h4 class="text-center"><span class="h5 text-muted"> $<%= @sitter.price%> per day</span></h4>
-        <h4 class="text-center"><span class="h5 text-italic"><i class="fas fa-phone"></i> <%= @sitter.phone %></span></h4>
+        <h4 class="text-center"><span class="h5 text-italic"><i class="fas fa-phone"></i> <%= @sitter.phone %></span>
+        </h4>
+      </div>
 
-    </div>
-    <div class="col mx-auto d-flex flex-column align-items-center pt-5">
-      <h4>Available Dates</h4>
-      <% if !@sitter.timeslots.empty? %>
-
+      <div class="col mx-auto d-flex flex-column align-items-center pt-5">
+        <h4>Available Dates</h4>
+        <% if !@sitter.timeslots.empty? %>
       <% @sitter.timeslots.each do |t| %>
       <%= link_to edit_timeslot_path(t.id) do %>
       <p><%= t.available_start_date.strftime("%d %b %Y")%> to <%= t.available_end_date.strftime("%d %b %Y")%></p>
@@ -22,22 +29,24 @@
       <%= link_to 'Add Timeslot', new_timeslot_path %>
       <% end %>
     </div>
+
     <div class="col mx-1 my-1">
       <div class="container-fluid h-100 pt-5">
         <% if @sitter.location %>
         <iframe width="100%" height="100%" frameborder="0" style="border:0" class="img-responsive"
           src="https://www.google.com/maps/embed/v1/search?q=<%= @sitter.location.gsub(/\s+/, '+') %>,+Singapore&key=AIzaSyBLmBOaPbZ6QachL4NResvEtu8ChjOQGfw"
           allowfullscreen></iframe>
-        <% else %>
-        <%=image_tag "https://joomly.net/frontend/web/images/googlemap/map.png", :class =>'img-responsive', :style=>"width:100%;"%>
-        <% end %>
+          <% else %>
+            <%=image_tag "https://joomly.net/frontend/web/images/googlemap/map.png", :class =>'img-responsive', :style=>"width:100%;"%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row d-flex flex-row justify-content-center align-self-center mt-5">
+      <div class="container">
+        <h4 class='text-center'>About me</h4>
+        <p style="white-space: pre-wrap; overflow-wrap: break-word;" class="text-center"><%= @sitter.description%></p>
       </div>
     </div>
   </div>
-  <div class="row d-flex flex-row justify-content-center align-self-center mt-5">
-    <div class="container">
-      <h4 class='text-center'>About me</h4>
-      <p style="white-space: pre-wrap; overflow-wrap: break-word;" class="text-center"><%= @sitter.description%></p>
-    </div>
-  </div>
-</div>

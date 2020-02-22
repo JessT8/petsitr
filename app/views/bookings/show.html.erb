@@ -37,8 +37,8 @@
 		        Pending
 		      <% end %>
 	    </div>
+	    	  </div>
 	    <% end %>
-	  </div>
 	     <% end %>
 	       <% if current_user.sitter %>
 	    	<h1>Bookings received</h1>
@@ -82,7 +82,7 @@
 
 	                            <%= form.hidden_field :status, :value => true %>
 	                            <%= form.hidden_field :id, :value => booking.id %>
-	                            <%= form.submit 'Accept', :class=>"btn btn-outline-success", :style=>"margin:0 10px"%>
+	                            <%= form.submit 'Accept', :class=>"btn btn-outline-success", :style=>"margin:0 10px 0 0"%>
 	                        <% end %>
 	                        <%= form_with scope: :booking, model: @booking, method: "patch", local: true do |form| %>
 	                        	<%= form.hidden_field :status, :value => false %>
@@ -95,12 +95,13 @@
 	                    <div class="row">
 	                        Completed
 	                    </div>
+	                  </div>
+	                </div>
 	                <% end %>
-	            </div>
+
 	        <% end %>
 	<% else %>
 	    <p>No Pending Sitter Bookings</p>
 	<% end %>
 	<% end %>
-</div>
 </div>

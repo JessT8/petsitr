@@ -1,26 +1,56 @@
 <section id="index">
-
-    <div class='container'>
-    <h1 class="text-center pt-3">Pet Sitters</h1>
-        <div class="row mt-2 d-flex justify-content-center">
-            <% @sitters.each do |sitter| %>
-            <div class="col-12 col-md-4 mt-4">
-                <div class="card profile-card-5">
-                    <div class="card-img-block">
-                        <img src='<%= sitter.picture %>' class="card-img-top" alt="Card image cap">
-                    </div>
-                    <div class="card-body pt-0">
-                        <h5 class="card-title"><%= sitter.user.username %></h5>
-                        <h3 class="card-text text-right text-muted">$<%= sitter.price %></h3>
-                    </div>
-                    <a href='/sitters/<%= sitter.id %>' class='btn btn-success'>See Profile</a>
-                </div>
-
+	<div class='container'>
+		<h1 class="text-center pt-3">Pet Sitters</h1>
+    <div class="bg-white p-4">
+    	<%= form_with scope: :sitter, url: search_path, local: true do |form| %>
+    	<div class="form-inline">
+    		<div class="form-group">
+  				<%= form.label :Start_date %>:
+  				<%= form.text_field :available_start_date , :type=>"date", :class=>"form-control ml-3 mr-3", :min=> Date.today%>
+  			</div>
+  		  <div class="form-group">
+  				<%= form.label :End_date %>:
+  				<%= form.text_field :available_end_date , :type=>"date", :class=>"form-control ml-3 mr-3", :min=> Date.today%>
+  				</div>
+		  		<label class="pr-3">Pet: </label>
+  				<%= form.collection_select :pet_id, @pets, :id, :animal, {label: 'Pets:', :include_blank => ("Select..."), hide_label: true}, {:class=> "form-control input-lg"} %>
+		 		<div class="actions pl-3">
+		  		<%= form.submit "Search", :class=> "btn btn-outline-success" %>
+		  	</div>
+		  </div>
+			<% end %>
+  	</div>
+		<div class="row mt-2 d-flex justify-content-center">
+      <% @sitters.each do |sitter| %>
+        <div class="col-8 col-lg-4 mt-4">
+          <div class="card profile-card-5">
+            <a href='/sitters/<%= sitter.id %>' class='btn btn-success profile-link'>See more</a>
+            <div class="card-img-block">
+              <img src='<%= sitter.picture %>' class="card-img-top" alt="Card image cap">
             </div>
-            <% end  %>
+            <div class="card-body pt-0">
+              <h5 class="card-title"><%= sitter.user.username %>
+                <span class="float-right animals">
+                	<% sitter.pets.each do |pet| %>
+	                  <% if pet.animal == "dog" %>
+	                    <i class="fas fa-dog" style='font-size: 25px;'></i><br/>
+	                  <% elsif pet.animal == "cat" %>
+	                    <i class="fas fa-cat" style='font-size: 25px;'></i><br/>
+	                  <% elsif pet.animal == "bird" %>
+	                    <i class="fas fa-dove" style='font-size: 25px;'></i><br/>
+	                  <% end %>
+                	<% end %>
+                </span>
+              </h5>
+              <% if !sitter.timeslots.empty? %>
+                <span>Available: <%= sitter.timeslots[0].available_start_date.strftime("%d %b %Y") %>...
+              <% end %>
+                <span class="float-right card-text text-right">$<%= sitter.price %>/day</span>
+              </div>
+            </div>
+          </div>
+        <% end  %>
+      </div>
     </div>
-    </div>
-
-
-
+	</div>
 </section>

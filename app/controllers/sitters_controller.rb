@@ -2,9 +2,26 @@ class SittersController < ApplicationController
   before_action :authenticate_user!
 
       def index
-        @sitters = Sitter.where(:is_visible => true).where.not(:user => current_user)
+          @sitters = Sitter.where(:is_visible => true).where.not(:user => current_user)
+          @pets = Pet.all
       end
-
+      def search
+        if search_params[:available_start_date] != "" &&search_params[:available_end_date] != "" && search_params[:pet_id] != ""
+        @timeslot = Timeslot.where("available_start_date <= ? and available_end_date >= ?",search_params[:available_start_date],search_params[:available_end_date])
+          @sitters_group_1 = @timeslot.map { |timeslot|
+            timeslot.sitter
+          }
+          @pet = Pet.find(search_params[:pet_id])
+          @sitters_group_2 = @pet.sitters
+          @sitters = (@sitters_group_1 & @sitters_group_2).uniq
+          @pets = Pet.all
+          render "index"
+        else
+          @sitters = Sitter.all
+          @pets = Pet.all
+          render "index"
+        end
+      end
       def profile
         @sitter = Sitter.find_by(user: current_user)
         if @sitter
@@ -77,8 +94,8 @@ class SittersController < ApplicationController
         params.require(:sitter).permit(:phone, :description, :location, :price, :about, :picture, :is_visible, :pet_ids=>[])
       end
 
-      def timeslot_params
-        params.require(:sitter).permit(:available_start_date, :available_end_date)
+      def search_params
+        params.require(:sitter).permit(:available_start_date, :available_end_date, :pet_id)
       end
 
 end
