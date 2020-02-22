@@ -31,7 +31,7 @@ html {
   margin: 0;
   overflow-x: hidden;
   padding-top: 56px;
-  background-color: $main-color;
+
 }
 
 body {
@@ -132,23 +132,58 @@ body {
   // background-color: $main-color;
   background-image: url('https://ak0.picdn.net/shutterstock/videos/1024340720/thumb/3.jpg');
   background-position: center;
+  background-repeat: repeat-y;
+  margin-bottom: 56px;
 
   .card {
     padding: 0 0;
 
     .card-body {
       padding-bottom: 5px;
+      position: relative;
+
+      .animals {
+        width: 30%;
+        position: absolute;
+        right: -25px;
+        top: -90px;
+        line-height: 1.5;
+        color: black;
+      }
     }
   }
 
   .profile-card-5 {
     margin-top: 20px;
+    position: relative;
+
+    .profile-link {
+      position: absolute;
+      right: -18px;
+      top: -14px;
+      z-index: 100;
+    }
+
+    .card-img-block {
+      width: 91%;
+      margin: 0 auto;
+      position: relative;
+      top: -20px;
+
+    }
+
+    .card-img-block img {
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.63);
+      max-height: 133px;
+      max-width: 200px;
+    }
 
     .btn {
       border-radius: 2px;
-      text-transform: uppercase;
       font-size: 12px;
       padding: 7px 20px;
+      width: 28%;
     }
 
     .btn:hover, .btn-outline-success:hover{
@@ -169,22 +204,10 @@ body {
       border: none!important
     }
 
-    .card-img-block {
-      width: 91%;
-      margin: 0 auto;
-      position: relative;
-      top: -20px;
-
-    }
-
-    .card-img-block img {
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.63);
-    }
-
     h5 {
       color: #4E5E30;
       font-weight: 600;
+      text-decoration: underline;
     }
 
     p {
@@ -195,8 +218,8 @@ body {
 
 }
 
-#current_profile, #book{
-
+// profile creation
+#new-profile, #book{
   background-image: url('https://ak0.picdn.net/shutterstock/videos/1024340720/thumb/3.jpg');
   background-position: bottom;
 
@@ -222,4 +245,14 @@ body {
     	color:red;
     	font-size:14px;
     }
+}
+
+// current user profile page
+#profile {
+
+}
+
+// sitter profile page
+#sitter-profile {
+
 }
