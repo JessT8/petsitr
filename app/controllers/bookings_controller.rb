@@ -28,6 +28,7 @@ class BookingsController < ApplicationController
     end
 
     def update
+        byebug
         @book = Booking.new(booking_params);
         @booking = Booking.find(@book.id);
         if @book.status == true
@@ -41,20 +42,35 @@ class BookingsController < ApplicationController
             end
 
             if @booking.start_date == @timeslot.available_start_date && @booking.end_date < @timeslot.available_end_date
-                @timeslot.update(available_start_date: @booking.end_date)
+                @timeslot.update(available_start_date: @booking.end_date + 1)
                 @booking.update(status: true)
-
+                @bookings = Booking.where("start_date <= ? or end_date >= ?", @booking.start_date, @booking.end_date)
+                @bookings.each do |booking|
+                    booking.update(status: false)
+                end
             elsif @booking.end_date == @timeslot.available_end_date && @booking.start_date > @timeslot.available_start_date
-                @timeslot.update(available_end_date: @booking.start_date)
+                @timeslot.update(available_end_date: @booking.start_date - 1)
                 @booking.update(status: true)
+                @bookings = Booking.where("start_date <= ? or end_date >= ?", @booking.start_date, @booking.end_date)
+                @bookings.each do |booking|
+                    booking.update(status: false)
+                end
             elsif @booking.start_date > @timeslot.available_start_date && @booking.end_date < @timeslot.available_end_date
-                new_timeslot = Timeslot.new(available_start_date: @timeslot.available_start_date, available_end_date: @booking.start_date, sitter: @timeslot.sitter)
+                new_timeslot = Timeslot.new(available_start_date: @timeslot.available_start_date, available_end_date: @booking.start_date - 1, sitter: @timeslot.sitter)
                 new_timeslot.save
-                @timeslot.update(available_start_date: @booking.end_date)
+                @timeslot.update(available_start_date: @booking.end_date + 1)
                 @booking.update(status: true)
+                @bookings = Booking.where("start_date <= ? or end_date >= ?", @booking.start_date, @booking.end_date)
+                @bookings.each do |booking|
+                    booking.update(status: false)
+                end
             elsif @booking.start_date == @timeslot.available_start_date && @booking.end_date == @timeslot.available_end_date
                 @timeslot.destroy
                 @booking.update(status: true)
+                @bookings = Booking.where("start_date <= ? or end_date >= ?", @booking.start_date, @booking.end_date)
+                @bookings.each do |booking|
+                    booking.update(status: false)
+                end
             else
                 render plain: "SOMETHING IS WRONG IN BOOKING UPDATE"
             end

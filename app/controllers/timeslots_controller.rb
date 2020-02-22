@@ -3,18 +3,16 @@ class TimeslotsController < ApplicationController
     before_action :authenticate_user!
 
     def new
-        @sitter_id = current_user.id
     end
 
     def create
         @timeslot = Timeslot.new(timeslot_params)
 
-        @timeslot.sitter_id = current_user.id
+        @timeslot.sitter = current_user.sitter
 
         if @timeslot.save
-            redirect_to @new_timeslot
+            redirect_to profile_path
         else
-            @sitter_id = current_user.id
             render "/timeslots/new"
         end
     end

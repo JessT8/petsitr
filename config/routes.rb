@@ -21,6 +21,6 @@ Rails.application.routes.draw do
     patch '/users/bookings' => 'bookings#update', as: 'update_booking'
 
     #testing timeslots
-    get '/timeslots/new' => 'timeslots#new', as: 'new_timeslot' #for testing
-    post '/timeslots' => 'timeslots#create' #for testing
+    get '/timeslots/new' => 'timeslots#new', as: 'new_timeslot'
+    post '/timeslots' => 'timeslots#create'
 end
