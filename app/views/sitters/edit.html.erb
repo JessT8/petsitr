@@ -1,54 +1,68 @@
+<section id='edit-profile'>
+  <div style="width:70%;" class="mx-auto mb-5 mt-3">
 <h1>Edit profile</h1>
 
 <%= form_with scope: :sitter, model: @sitter, local: true do |form| %>
 
-  <p>
+  <div class="form-row ">
+			<div class="form-group col-md-6 ">
     <%= form.label :phone %><br>
-    <%= form.text_field :phone %>
-  </p>
-  <p>
-    <%= form.label :location %><br>
-    <%= form.text_field :location %>
-  </p>
-  <p>
-    <%= form.label :price %><br>
-    <%= form.text_field :price %>
-  </p>
-  <p>
-    <%= form.label :about %><br>
-    <%= form.text_area :description, :class=>"form-control", :rows => 3, :style=>"resize:none;", :maxlength=>"1000" %>
-  </p>
-  <p>
-    <%= form.label :avatar_url %><br>
-    <%= form.text_field :picture %>
-  </p>
-
-  <p>
-  <%= form.label :visible %>
-  <%= form.check_box :is_visible, { :multiple => false }, true, false %>
-  </p>
-
-  <p><%=label_tag "Pet preferences:"%></p>
-  <p>
-    <% @pets.each do |c| %>
-    <%= check_box_tag "sitter[pet_ids][]",
-      c.id, (checked =  form.object.pet_ids.include?(c.id)) %>
-    <%= label_tag "sitter[pet_ids][][#{c.id}]", c.animal %>
+    <%= form.text_field :phone, autofocus: true, :class=>"form-control", :type=>"tel" %>
+  <span class="error">
+					<%= show_errors(@sitter, :phone) %>
+				</span>
+			</div>
+      <div class="form-group col-md-6">
+				<%= form.label :price_per_day_in%> $<br>
+				<%= form.text_field :price, :class=>"form-control" %>
+			</div>
+	</div>
+  		<div class="form-group">
+			<%= form.label :location %><br>
+			<%= form.text_field :location , :class=>"form-control"%>
+		</div>
+		<div class="form-group">
+			<%= form.label :about %><br>
+			<%= form.text_area :description, :class=>"form-control", :rows => 3, :style=>"resize:none;", :maxlength=>"1000" %>
+		</div>
+		<div class="field form-group">
+			<%= form.label :avatar_url %><br>
+			<%= form.text_field :picture, :class=>"form-control" %>
+		</div>
+		<div class="form-row">
+			<div class="field form-group col-md-2">
+				<%= form.check_box :is_visible, { :multiple => false }, true, false %>
+				<%= form.label :public %>
+			</div>
+      <div class="field form-group col-md-6">
+				<%=label_tag "Pet preferences:"%>
+				<%= form.collection_check_boxes(:pet_ids, @pets, :id, :animal) do |a| %>
+				<%= a.label class:"label-checkbox" do%>
+				<%=a.check_box + " " + a.text%>s
+				<%end%>
+				<% end %>
+			</div>
+		</div>
+    		<div class="actions">
+			<%= form.submit class: "btn btn-outline-success" %>
+		</div>
 <% end %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
 
-    <% @timeslots.each do |timeslot| %>
-      <p>
-        <label>Available Start Date</label>
-        <%= timeslot.available_start_date %><%= link_to 'Edit Availability', edit_timeslot_path(timeslot.id) %>
-      </p>
+<hr style="border: 1px solid black" class="mt-4"/>
 
-      <p>
-        <label>Available End Date</label>
-        <%= timeslot.available_end_date %>
-      </p>
-  <% end %>
+<h1>Edit Timeslots</h1>
+
+<% if !@sitter.timeslots.empty? %>
+
+          <% @sitter.timeslots.each do |t| %>
+            <%= link_to edit_timeslot_path(t.id) do %>
+            <span class="mr-5"><%= t.available_start_date.strftime("%d %b %Y")%> to <%= t.available_end_date.strftime("%d %b %Y")%></span>
+            <% end %>
+          <% end %>
+
+        <%else %>
+        <p>No available timeslot</p>
+        <% end %>
+
+</div>
+</section>
