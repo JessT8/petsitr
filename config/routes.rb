@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get '/profile' => 'sitters#profile', as: 'profile'
     get '/profile/new' => 'sitters#new', as: 'new_profile'
     post '/profile' => 'sitters#create'
+    post '/index' => 'sitters#search', as: 'search'
 
     get '/profile/edit' => 'sitters#edit', as: 'edit_profile'
     patch '/sitters/:id' => 'sitters#update'
