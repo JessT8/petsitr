@@ -4,6 +4,7 @@ class SittersController < ApplicationController
       def index
           @sitters = Sitter.where(:is_visible => true).where.not(:user => current_user)
           @pets = Pet.all
+          
       end
       def search
           #referring to sitters that matches time specified
