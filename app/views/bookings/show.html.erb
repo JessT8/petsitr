@@ -1,107 +1,107 @@
 <div class="container h-100" id="show_booking">
-	<h1>Bookings sent</h1>
 
-		<% if @mybookings.length == 0 %>
-				<div class=row>
-		    	<div class="col">No Current Bookings</div>
-		  	</div>
-		<% else %>
-			<div class=row>
-				<div class="col"><strong>Sitter</strong></div>
-	      <div class="col"><strong>Start</strong></div>
-	      <div class="col"><strong>End</strong></div>
-	      <div class="col"><strong>Cost</strong></div>
-	      <div class="col"><strong>Status</strong></div>
-    </div>
-    	<% @mybookings.each do |mybooking| %>
-    	<div class=row>
-				<div class="col">
-					<%= mybooking.sitter.user.username %>
-				</div>
-		    <div class="col">
-		    	<%= mybooking.start_date.strftime("%d %b %Y") %>
-		    </div>
-		    <div class="col">
-		    	<%= mybooking.end_date.strftime("%d %b %Y") %>
-		    </div>
-		    <div class="col">
-		    	<% days =  mybooking.end_date - mybooking.start_date %>
-		    	$<%= mybooking.sitter.price.to_i * (days.to_i + 1) %>
-		    </div>
-		    <div class="col">
-		    	<% if mybooking.status == true %>
-		        Accepted
-		    	<% elsif mybooking.status == false %>
-		        Declined
-		      <% else %>
-		        Pending
-		      <% end %>
-	    </div>
-	    	  </div>
-	    <% end %>
-	     <% end %>
-	       <% if current_user.sitter %>
-	    	<h1>Bookings received</h1>
-	    	<% if @bookings.length > 0 %>
-		  		<div class=row>
-	            <div class="col"><strong>User</strong></div>
-	            <div class="col"><strong>Start Date</strong></div>
-	            <div class="col"><strong>End Date</strong></div>
-	            <div class="col"><strong>Price</strong></div>
-	            <div class="col"><strong>Status</strong></div>
-	            <div class="col"><strong>Action</strong></div>
-	        </div>
-	        <% @bookings.each do |booking| %>
-	            <div class=row>
-	                <div class="col">
-	                	<%= booking.user.username %>
-	                </div>
-	                <div class="col">
-	                	<%= booking.start_date.strftime("%d %b %Y") %>
-	                </div>
-	                <div class="col">
-	                	<%= booking.end_date.strftime("%d %b %Y") %>
-	                </div>
-	               	<div class="col">
-	               		<% days =  booking.end_date - booking.start_date %>
-	               		$<%= booking.sitter.price.to_i * (days.to_i + 1) %>
-	               	</div>
-	                <div class="col">
-	                    <% if booking.status == true %>
-	                    Accepted
-	                    <% elsif booking.status == false %>
-	                    Declined
-	                    <% else %>
-	                    Pending
-	                    <% end %>
-	                </div>
-	                <div class="col">
-	                	<% if booking.status == nil %>
-	                	    	<div class="row">
-	                        <%= form_with scope: :booking, model: @booking, method: "patch", local: true do |form| %>
 
-	                            <%= form.hidden_field :status, :value => true %>
-	                            <%= form.hidden_field :id, :value => booking.id %>
-	                            <%= form.submit 'Accept', :class=>"btn btn-outline-success", :style=>"margin:0 10px 0 0"%>
-	                        <% end %>
-	                        <%= form_with scope: :booking, model: @booking, method: "patch", local: true do |form| %>
-	                        	<%= form.hidden_field :status, :value => false %>
-	                            <%= form.hidden_field :id, :value => booking.id %>
-	                            <%= form.submit 'Decline', :class=>"btn btn-outline-danger"%>
+    <h1>Bookings sent</h1>
+    <% if @mybookings.length == 0 %>
+        <div class=row>
+            <div class="col">No Current Bookings</div>
+        </div>
+    <% else %>
+        <div class=row>
+            <div class="col"><strong>Sitter</strong></div>
+            <div class="col"><strong>Start</strong></div>
+            <div class="col"><strong>End</strong></div>
+            <div class="col"><strong>Cost</strong></div>
+            <div class="col"><strong>Status</strong></div>
+        </div>
+        <% @mybookings.each do |mybooking| %>
+            <div class=row>
+                <div class="col">
+                    <%= mybooking.sitter.user.username %>
+                </div>
+                <div class="col">
+                    <%= mybooking.start_date.strftime("%d %b %Y") %>
+                </div>
+                <div class="col">
+                    <%= mybooking.end_date.strftime("%d %b %Y") %>
+                </div>
+                <div class="col">
+                    <% days =  mybooking.end_date - mybooking.start_date %>
+                    $<%= mybooking.sitter.price.to_i * (days.to_i + 1) %>
+                </div>
+                <div class="col">
+                    <% if mybooking.status == true %>
+                    Accepted
+                    <% elsif mybooking.status == false %>
+                    Declined
+                    <% else %>
+                    Pending
+                    <% end %>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
 
-	                        <% end %>
-	                        </div>
-	               		<% else %>
-	                    <div class="row">
-	                        Completed
-	                    </div>
-	                  </div>
-	                </div>
-	                <% end %>
 
-	        <% end %>
-	<% else %>
-	    <p>No Pending Sitter Bookings</p>
-	<% end %>
-	<% end %>
+    <% if current_user.sitter %>
+        <h1>Bookings received</h1>
+            <% if @bookings.length > 0 %>
+                <div class=row>
+                    <div class="col"><strong>User</strong></div>
+                    <div class="col"><strong>Start Date</strong></div>
+                    <div class="col"><strong>End Date</strong></div>
+                    <div class="col"><strong>Price</strong></div>
+                    <div class="col"><strong>Status</strong></div>
+                    <div class="col"><strong>Action</strong></div>
+                </div>
+                <% @bookings.each do |booking| %>
+                    <div class=row>
+                        <div class="col">
+                            <%= booking.user.username %>
+                        </div>
+                        <div class="col">
+                            <%= booking.start_date.strftime("%d %b %Y") %>
+                        </div>
+                        <div class="col">
+                            <%= booking.end_date.strftime("%d %b %Y") %>
+                        </div>
+                        <div class="col">
+                            <% days =  booking.end_date - booking.start_date %>
+                            $<%= booking.sitter.price.to_i * (days.to_i + 1) %>
+                        </div>
+                        <div class="col">
+                            <% if booking.status == true %>
+                            Accepted
+                            <% elsif booking.status == false %>
+                            Declined
+                            <% else %>
+                            Pending
+                            <% end %>
+                        </div>
+                        <div class="col">
+                            <% if booking.status == nil %>
+                                <div class="row">
+                                    <%= form_with scope: :booking, model: @booking, method: "patch", local: true do |form| %>
+                                        <%= form.hidden_field :status, :value => true %>
+                                        <%= form.hidden_field :id, :value => booking.id %>
+                                        <%= form.submit 'Accept', :class=>"btn btn-outline-success", :style=>"margin:0 10px 0 0"%>
+                                    <% end %>
+                                    <%= form_with scope: :booking, model: @booking, method: "patch", local: true do |form| %>
+                                        <%= form.hidden_field :status, :value => false %>
+                                        <%= form.hidden_field :id, :value => booking.id %>
+                                        <%= form.submit 'Decline', :class=>"btn btn-outline-danger"%>
+                                    <% end %>
+                                </div>
+                            <% else %>
+                                <div class="row">
+                                    Completed
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+            <% end %>
+        <% else %>
+            <p>No Pending Sitter Bookings</p>
+        <% end %>
+    <% end %>
 </div>
