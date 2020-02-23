@@ -32,7 +32,11 @@
                 <div class="col">
                     <% if mybooking.status == true %>
                     Accepted
-                    <a href="https://api.whatsapp.com/send?phone=+65<%= mybooking.sitter.phone %>"><i class="fab fa-whatsapp fa-2x"></i></a>
+                        <% if !mybooking.sitter.phone.empty? %>
+                    <a href="https://api.whatsapp.com/send?phone=+65<%= mybooking.sitter.phone %>" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp fa-2x"></i></a>
+                        <% else %>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=<%= mybooking.sitter.user.email %>" target="_blank" rel="noopener noreferrer"><i class="fas fa-at fa-2x"></i></a>
+                        <% end %>
                     <% elsif mybooking.status == false %>
                     Declined
                     <% else %>
@@ -75,9 +79,9 @@
                             Accepted
                                 <% if booking.user.sitter %>
                                     <% if !booking.user.sitter.phone.empty? %>
-                                        <a href="https://api.whatsapp.com/send?phone=+65<%= booking.user.sitter.phone %>"><i class="fab fa-whatsapp fa-2x"></i></a>
+                                        <a href="https://api.whatsapp.com/send?phone=+65<%= booking.user.sitter.phone %>" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp fa-2x"></i></a>
                                     <% else %>
-                                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=<%= booking.user.email %>"><i class="fas fa-at fa-2x"></i></a>
+                                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=<%= booking.user.email %>" target="_blank" rel="noopener noreferrer"><i class="fas fa-at fa-2x"></i></a>
                                     <% end %>
                                 <% else %>
                                 <a href="mailto: <%= booking.user.email %>"><i class="fas fa-at"></i></a>
