@@ -42,7 +42,6 @@ class BookingsController < ApplicationController
                     @timeslot = timeslot
                 end
             end
-            byebug
             if @timeslot == nil
                 redirect_to bookings_path and return
             end
