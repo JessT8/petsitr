@@ -83,7 +83,7 @@
                                         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=<%= booking.user.email %>" target="_blank" rel="noopener noreferrer"><i class="fas fa-at fa-2x"></i></a>
                                     <% end %>
                                 <% else %>
-                                <a href="mailto: <%= booking.user.email %>"><i class="fas fa-at fa-2x"></i></a>
+                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=<%= booking.user.email %>" target="_blank" rel="noopener noreferrer"><i class="fas fa-at fa-2x"></i></a>
                                 <% end %>
                             <% elsif booking.status == false %>
                             Declined
