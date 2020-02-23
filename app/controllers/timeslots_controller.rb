@@ -9,11 +9,14 @@ class TimeslotsController < ApplicationController
         @timeslot = Timeslot.new(timeslot_params)
 
         @timeslot.sitter = current_user.sitter
-
-        if @timeslot.save
-            redirect_to profile_path
+        if @timeslot.available_start_date == nil || @timeslot.available_end_date == nil
+            redirect_to new_timeslot_path
         else
-            render "/timeslots/new"
+            if @timeslot.save
+                redirect_to profile_path
+            else
+                render "/timeslots/new"
+            end
         end
     end
 
