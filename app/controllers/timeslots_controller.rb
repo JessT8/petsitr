@@ -25,9 +25,13 @@ class TimeslotsController < ApplicationController
     end
 
     def update
-        @timeslot = Timeslot.find(params[:id])
-        @timeslot.update(timeslot_params)
-        redirect_to profile_path
+        if timeslot_params[:available_start_date] < timeslot_params[:available_end_date]
+            @timeslot = Timeslot.find(params[:id])
+            @timeslot.update(timeslot_params)
+            redirect_to profile_path
+        else
+            redirect_to profile_path
+        end
     end
 
 private
