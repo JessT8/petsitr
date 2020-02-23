@@ -6,21 +6,24 @@ class SittersController < ApplicationController
           @pets = Pet.all
       end
       def search
-        if search_params[:available_start_date] != "" &&search_params[:available_end_date] != "" && search_params[:pet_id] != ""
+          #referring to sitters that matches time specified
+          @sitters_group_1 = Sitter.all
+          @sitters_group_2 = Sitter.all
+        #find sitters group 1 if neither dates are empty
+        if search_params[:available_start_date] != "" &&search_params[:available_end_date]
         @timeslot = Timeslot.where("available_start_date <= ? and available_end_date >= ?",search_params[:available_start_date],search_params[:available_end_date])
           @sitters_group_1 = @timeslot.map { |timeslot|
             timeslot.sitter
           }
+        end
+        #find sitters group 2 if pet not empty
+        if search_params[:pet_id] != ""
           @pet = Pet.find(search_params[:pet_id])
           @sitters_group_2 = @pet.sitters
+        end
           @sitters = (@sitters_group_1 & @sitters_group_2).uniq
           @pets = Pet.all
           render "index"
-        else
-          @sitters = Sitter.all
-          @pets = Pet.all
-          render "index"
-        end
       end
       def profile
         @sitter = Sitter.find_by(user: current_user)

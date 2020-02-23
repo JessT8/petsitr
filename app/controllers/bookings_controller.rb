@@ -3,12 +3,14 @@ class BookingsController < ApplicationController
     def new
         @sitter = Sitter.find(params[:id])
         @timeslots = Timeslot.where(sitter: @sitter)
+
+        @earliest =  Timeslot.where(sitter: @sitter).minimum('available_start_date')
+        @latest =Timeslot.where(sitter: @sitter).maximum('available_end_date')
     end
 
     def create
         @booking = Booking.new(booking_params)
         @sitter = Sitter.find(params[:id])
-
         @timeslots = Timeslot.where(sitter: @sitter)
         @timeslots.each do |timeslot|
             if (@booking.start_date >= timeslot.available_start_date && @booking.end_date <= timeslot.available_end_date)
@@ -28,6 +30,7 @@ class BookingsController < ApplicationController
     end
 
     def update
+
         @book = Booking.new(booking_params);
         @booking = Booking.find(@book.id);
         if @book.status == true
