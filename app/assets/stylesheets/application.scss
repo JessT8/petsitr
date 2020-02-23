@@ -82,10 +82,8 @@ body {
   background-position-y: 0px;
   background-repeat: no-repeat;
 
-  .first-line {
-    color: red;
-    position: relative;
-    left: 50px;
+  .display-1 {
+    border-bottom: 1px solid black;
   }
 
   .btn:hover,
@@ -124,6 +122,10 @@ body {
   background-position-y: 0px;
   background-repeat: no-repeat;
 
+  .display-1 {
+    border-bottom: 1px solid black;
+  }
+  
   .btn:hover,
   .btn-outline-success:hover {
     background-color: $button-color;
