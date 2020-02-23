@@ -38,7 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 #login
 gem 'devise'
-
+gem 'ffaker'
 group :development, :test do
   gem 'ffaker'
 end
