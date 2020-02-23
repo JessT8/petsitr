@@ -110,9 +110,11 @@ class SittersController < ApplicationController
       def sitter_params
         params.require(:sitter).permit(:phone, :description, :location, :price, :about, :picture, :is_visible, :pet_ids=>[])
       end
+
       def timeslot_params
         params.require(:sitter).permit(:available_start_date, :available_end_date)
       end
+
       def search_params
         params.require(:sitter).permit(:available_start_date, :available_end_date, :pet_id)
       end
