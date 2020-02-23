@@ -31,7 +31,7 @@
   <div class="actions">
     <%= f.submit "Log in", class: "btn btn-outline-success" %><span><%= render "devise/shared/links" %></span>
   </div>
-  <% if resource.errors.messages %>
+  <% if flash[:alert] %>
     <p class='text-danger pt-3'>Login failed!</p>
   <% end %>
   
