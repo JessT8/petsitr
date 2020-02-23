@@ -166,7 +166,7 @@ body {
     .card-body {
       padding-bottom: 5px;
       position: relative;
-      
+
 
       .animals {
         width: 30%;
@@ -263,7 +263,11 @@ body {
     border-color: #5683A0;
     color: white !important;
   }
-
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
   .btn,
   .btn-outline-success {
     border-color: $button-color;
