@@ -6,6 +6,15 @@ class Sitter < ApplicationRecord
     has_many :bookings
 
     has_and_belongs_to_many :pets
+    validate :phone_logic, on: :create
 
-    # validates :phone, presence: true, format: { with: /\^(?:\d{8}(?:\d{2}(?:\d{2})?)?|\(\+?\d{2,3}\)\s?(?:\d{4}[\s*.-]?\d{4}|\d{3}[\s*.-]?\d{3}|\d{2}([\s*.-]?)\d{2}\1\d{2}(?:\1\d{2})?))/, message:"*Wrong format for numbers"}
+    def phone_logic
+      if self.phone =~ /^(?:\d{8,})|(?=\d{4}+ \d{4})/
+        if Sitter.where(phone: phone).exists?
+          errors.add(:phone_no, "Phone number taken")
+        end
+      else
+        errors.add(:phone_no, "Invalid input.")
+      end
+    end
 end
