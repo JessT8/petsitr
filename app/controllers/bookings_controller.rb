@@ -40,6 +40,10 @@ class BookingsController < ApplicationController
                     @timeslot = timeslot
                 end
             end
+            byebug
+            if @timeslot == nil
+                redirect_to bookings_path and return
+            end
             @bookings = Booking.where(sitter: current_user.sitter).where.not('start_date > ? AND end_date > ?', @booking.end_date, @booking.end_date).where.not('start_date < ? AND end_date < ?', @booking.start_date, @booking.start_date)
             @bookings.each do |booking|
                 booking.update(status: false)
