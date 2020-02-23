@@ -24,7 +24,7 @@ class SittersController < ApplicationController
           @sitters_group_3 = (@sitters_group_1 & @sitters_group_2).uniq
           @sitters = @sitters_group_3.select do |sitter|
               sitter.is_visible == true && sitter.user != current_user
-          end
+        end
           @pets = Pet.all
           render "index"
       end
@@ -87,14 +87,22 @@ class SittersController < ApplicationController
 
       def update
         @sitter = Sitter.find_by(user: current_user)
+
         if !sitter_params[:is_visible]
           @sitter.is_visible = false
-          @sitter.update(sitter_params)
-        else
-          @sitter.update(sitter_params)
         end
-
-        redirect_to profile_path
+        if @sitter.update(sitter_params)
+            if(@sitter.pet_ids.length == 0)
+                @sitter.pets << Pet.all
+                @sitter.save
+            end
+          redirect_to profile_path
+        else
+        @sitter = Sitter.find_by(user: current_user)
+            @pets = Pet.all
+            @timeslots = Timeslot.where(sitter: current_user.sitter)
+            render 'edit'
+        end
       end
 
       def destroy
