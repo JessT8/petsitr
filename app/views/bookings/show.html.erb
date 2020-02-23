@@ -26,8 +26,7 @@
                     <%= mybooking.end_date.strftime("%d %b %Y") %>
                 </div>
                 <div class="col">
-                    <% days =  mybooking.end_date - mybooking.start_date %>
-                    $<%= mybooking.sitter.price.to_i * (days.to_i + 1) %>
+                    $<%= mybooking.price %>
                 </div>
                 <div class="col">
                     <% if mybooking.status == true %>
