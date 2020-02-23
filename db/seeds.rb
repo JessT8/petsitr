@@ -70,5 +70,6 @@ Booking.create(
   user: user,
   sitter: new_pet_sitter,
   start_date: Date.today + 1 ,
-  end_date:Date.today + 3
+  end_date:Date.today + 3,
+  price: 120
   )
