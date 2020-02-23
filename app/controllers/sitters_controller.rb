@@ -10,7 +10,7 @@ class SittersController < ApplicationController
         @sitters_group_1 = Sitter.where(:is_visible => true).where.not(:user => current_user)
         @sitters_group_2 = Sitter.where(:is_visible => true).where.not(:user => current_user)
         #find sitters group 1 if neither dates are empty
-        if search_params[:available_start_date] != "" &&search_params[:available_end_date]
+        if (search_params[:available_start_date] != "" &&search_params[:available_end_date]) && (search_params[:available_start_date] != "") && (search_params[:available_end_date] != "")
             @timeslot = Timeslot.where("available_start_date <= ? and available_end_date >= ?",search_params[:available_start_date],search_params[:available_end_date])
             @sitters_group_1 = @timeslot.map { |timeslot|
                 timeslot.sitter
