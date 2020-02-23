@@ -1,4 +1,4 @@
-<% if resource.errors.any? %>
+<!-- <% if resource.errors.any? %>
   <div id="error_explanation">
     <h2>
       <%= I18n.t("errors.messages.not_saved",
@@ -12,4 +12,14 @@
       <% end %>
     </ul>
   </div>
+<% end %> -->
+
+<% if resource.errors.any? %>
+<% puts resource.errors.inspect %>
+  <div id="error_explanation">
+    <p style="color: red; position: absolute; left: 38%; top: 9%; ">
+      <%= resource.errors.full_messages[0] %>
+    </p>
+  </div>
 <% end %>
+
