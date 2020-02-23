@@ -40,8 +40,10 @@ class BookingsController < ApplicationController
                     @timeslot = timeslot
                 end
             end
-            @bookings = Booking.where(sitter: current_user.sitter).where.not('start_date AND end_date > ?', @booking.end_date)
-            byebug
+            @bookings = Booking.where(sitter: current_user.sitter).where.not('start_date > ? AND end_date > ?', @booking.end_date, @booking.end_date).where.not('start_date < ? AND end_date < ?', @booking.start_date, @booking.start_date)
+            @bookings.each do |booking|
+                booking.update(status: false)
+            end
             if @booking.start_date == @timeslot.available_start_date && @booking.end_date < @timeslot.available_end_date
                 @timeslot.update(available_start_date: @booking.end_date + 1)
                 @booking.update(status: true)
