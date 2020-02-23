@@ -4,7 +4,6 @@ class SittersController < ApplicationController
       def index
           @sitters = Sitter.where(:is_visible => true).where.not(:user => current_user)
           @pets = Pet.all
-          @a_date = ""
       end
 
       def search
@@ -26,7 +25,6 @@ class SittersController < ApplicationController
           @sitters = @sitters_group_3.select do |sitter|
               sitter.is_visible == true && sitter.user != current_user
           end
-          @a_date = search_params[:available_start_date]
           @pets = Pet.all
           render "index"
       end
