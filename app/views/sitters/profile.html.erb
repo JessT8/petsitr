@@ -5,9 +5,9 @@
       <div class="col-8 col-md mx-auto d-flex flex-column">
         <h1 class="align-self-center"><%= @sitter.user.username%> <span
           style="font-size:20px"><%= link_to 'Edit', edit_profile_path %></span></h1>
-        <img src='<%= @sitter.picture %>' alt="..." class='img-responsive align-self-center mb-3'
-        style="width:75%; border-radius: 50px">
+                <%= image_tag @sitter.picture, style: "width:75%; border-radius: 50px", src: 'Image not found', onerror: 'this.error=null;this.src="https://pngimage.net/wp-content/uploads/2018/05/default-user-profile-image-png-7.png"', class:"img-responsive align-self-center mb-3" %>
         <h4 class="text-center">
+
         <% @sitter.pets.each do |pet| %>
           <span>● <%= pet.animal %>s </span>
         <% end %>

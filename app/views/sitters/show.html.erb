@@ -4,8 +4,7 @@
 
       <div class="col mx-auto d-flex flex-column">
         <h1 class="align-self-center">Hi! I am <%= @sitter.user.username%></h1>
-            <img src='<%= @sitter.picture %>' alt="..." class='img-responsive align-self-center mb-3'
-            style="width:75%; border-radius: 50px">
+            <%= image_tag @sitter.picture, style: "width:75%; border-radius: 50px", src: 'Image not found', onerror: 'this.error=null;this.src="https://pngimage.net/wp-content/uploads/2018/05/default-user-profile-image-png-7.png"', class:"img-responsive align-self-center mb-3" %>
             <h4 class="text-center"><% @sitter.pets.each do |pet| %><span>● <%= pet.animal %>s </span><% end %>
               <h4 class="text-center"><span class="h5 text-muted"> $<%= @sitter.price%> per day</span></h4>
               <h4 class="text-center"><span class="h5 text-italic"><i class="fas fa-phone"></i>

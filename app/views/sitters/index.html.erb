@@ -35,7 +35,7 @@
 			<div class="card profile-card-5">
 				<a href='/sitters/<%= sitter.id %>' class='btn btn-success profile-link'>See more</a>
 				<div class="card-img-block">
-					<img src='<%= sitter.picture %>' class="card-img-top" alt="Card image cap">
+					<%= image_tag sitter.picture, src: 'Image not found', onerror: 'this.error=null;this.src="https://pngimage.net/wp-content/uploads/2018/05/default-user-profile-image-png-7.png"', class:"card-img-top" %>
 				</div>
 				<div class="card-body pt-0">
 					<h5 class="card-title"><%= sitter.user.username %>
