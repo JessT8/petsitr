@@ -32,6 +32,7 @@
                 <div class="col">
                     <% if mybooking.status == true %>
                     Accepted
+                    <a href="https://api.whatsapp.com/send?phone=+65<%= mybooking.sitter.phone %>"><i class="fab fa-whatsapp fa-2x"></i></a>
                     <% elsif mybooking.status == false %>
                     Declined
                     <% else %>
@@ -72,6 +73,15 @@
                         <div class="col-2">
                             <% if booking.status == true %>
                             Accepted
+                                <% if booking.user.sitter %>
+                                    <% if !booking.user.sitter.phone.empty? %>
+                                        <a href="https://api.whatsapp.com/send?phone=+65<%= booking.user.sitter.phone %>"><i class="fab fa-whatsapp fa-2x"></i></a>
+                                    <% else %>
+                                        <a href="mailto: <%= booking.user.email %>"><i class="fas fa-at fa-2x"></i></a>
+                                    <% end %>
+                                <% else %>
+                                <a href="mailto: <%= booking.user.email %>"><i class="fas fa-at"></i></a>
+                                <% end %>
                             <% elsif booking.status == false %>
                             Declined
                             <% else %>
