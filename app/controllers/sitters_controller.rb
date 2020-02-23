@@ -36,13 +36,6 @@ class SittersController < ApplicationController
           redirect_to new_profile_path
         end
       end
-      def profile
-        @sitter = Sitter.find_by(user: current_user)
-        if @sitter
-        else
-          redirect_to new_profile_path
-        end
-      end
 
       def new
         @pets = Pet.all
@@ -66,13 +59,16 @@ class SittersController < ApplicationController
         end
 
         if @sitter.save
-          @timeslot.sitter = current_user.sitter
-          if @timeslot.save
-            redirect_to profile_path
-          else
-            @pets = Pet.all
-            render 'new'
-          end
+            @timeslot.sitter = current_user.sitter
+            if @timeslot.available_start_date == nil || @timeslot.available_end_date == nil
+                redirect_to new_timeslot_path
+            else
+                if @timeslot.save
+                    redirect_to profile_path
+                else
+                    redirect_to new_timeslot_path
+                end
+            end
         else
           @pets = Pet.all
           render 'new'
