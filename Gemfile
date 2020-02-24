@@ -45,6 +45,7 @@ gem 'cloudinary'
 #.env for API key
 gem 'dotenv-rails', groups: [:development, :test]
 
+gem 'ffaker'
 group :development, :test do
   gem 'ffaker'
 end
