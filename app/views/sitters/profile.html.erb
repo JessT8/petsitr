@@ -1,4 +1,11 @@
 <section id="profile">
+  <% if flash[:error] %>
+    <% flash.each do |type, msg| %>
+      <div class="alert alert-danger mt-2 mt-sm-0">
+        <%= msg %>
+      </div>
+    <% end %>
+  <% end %>
   <div class="container h-100">
     <div class="row justify-content-center align-self-center pt-3">
 

@@ -27,7 +27,7 @@
 		</div>
 		<div class="form-group">
 			<%= form.label :location %><br>
-			<%= form.text_field :location , :class=>"form-control", :required => true%>
+			<%= form.text_field :location , :class=>"form-control", :required => true, id:"autocomplete", placeholder: "Enter your address"%>
 		</div>
 		<div class="form-group">
 			<%= form.label :about %><br>
@@ -64,8 +64,19 @@
 	</div>
 </section>
 <script>
+
+function placesSearch(){
+
+	var options = {
+   		componentRestrictions: {country: "sg"} // 2-letters code
+	};
+	const input = document.querySelector("#autocomplete")
+	let autocomplete = new google.maps.places.Autocomplete(input, options)
+}
 $(".custom-file-input").on("change", function() {
   var fileName = $(this).val().split("\\").pop();
   $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 });
 </script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLmBOaPbZ6QachL4NResvEtu8ChjOQGfw&libraries=places&callback=placesSearch"></script>
