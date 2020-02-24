@@ -17,6 +17,8 @@ class BookingsController < ApplicationController
                 @timeslot = timeslot
                 @booking.sitter = @sitter
                 @booking.user = current_user
+                days = @booking.end_date - @booking.start_date
+                @booking.price = @booking.sitter.price.to_i * (days.to_i + 1)
                 @booking.save
                 redirect_to(bookings_path) and return
             end
