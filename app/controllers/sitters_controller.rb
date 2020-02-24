@@ -25,6 +25,7 @@ class SittersController < ApplicationController
           @sitters = @sitters_group_3.select do |sitter|
               sitter.is_visible == true && sitter.user != current_user
         end
+
           @pets = Pet.all
           render "index"
       end
@@ -49,6 +50,15 @@ class SittersController < ApplicationController
         @sitter = Sitter.new(sitter_params)
         @timeslot = Timeslot.new(timeslot_params)
         @sitter.user = current_user
+        if sitter_params[:picture]
+            file = sitter_params[:picture].path
+            cloudinary_file = Cloudinary::Uploader.upload(file)
+            if cloudinary_file
+              @sitter.picture = cloudinary_file['url']
+            end
+        else
+          @sitter.picture ='https://res.cloudinary.com/do3q60bdd/image/upload/v1580874417/Profile_pics/b40892de6be2c24a2a8efa6d84fd1fd6_pwktxl.png'
+        end
 
         if(@sitter.pet_ids.length == 0)
           @sitter.pets << Pet.all
@@ -87,14 +97,24 @@ class SittersController < ApplicationController
 
       def update
         @sitter = Sitter.find_by(user: current_user)
-
         if !sitter_params[:is_visible]
           @sitter.is_visible = false
+        end
+        update_pic = true
+        if !sitter_params[:picture]
+          sitter_params[:picture] = @sitter.picture
+          update_pic = false
         end
         if @sitter.update(sitter_params)
             if(@sitter.pet_ids.length == 0)
                 @sitter.pets << Pet.all
                 @sitter.save
+            end
+            if update_pic
+              file = sitter_params[:picture].path
+              cloudinary_file = Cloudinary::Uploader.upload(file)
+              @sitter.picture = cloudinary_file['url']
+              @sitter.save
             end
           redirect_to profile_path
         else
