@@ -17,12 +17,12 @@
       <div class="form-row">
         <div class="field">
           <%= f.label :username %><br />
-          <%= f.text_field :username, class: "form-control" %>
+          <%= f.text_field :username, class: "form-control", autofocus: true, :style=>"width:234.41px" %>
           <% if resource.errors.messages[:username].any? %>
           <div class="invalid-feedback">Username taken!</div>
           <% end %>
           <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+          <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
         </div>
       </div>
 
@@ -42,7 +42,7 @@
       <div class="form-row">
         <div class="field">
           <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", :style=>"width:234.41px" %>
           <% if resource.errors.messages[:password_confirmation].any? %>
           <div class="invalid-feedback">Password doesn't match!</div>
           <% end %>
