@@ -3,9 +3,18 @@ class TimeslotsController < ApplicationController
     before_action :authenticate_user!
 
     def new
+        timeslot_check = Timeslot.where(sitter: current_user.sitter)
+        if timeslot_check.length > 0
+            redirect_to profile_path
+        end
     end
 
     def create
+        #check if timeslot has already been exists
+        timeslot_check = Timeslot.where(sitter: current_user.sitter)
+        if timeslot_check.length > 0
+            redirect_to profile_path and return
+        end
         @timeslot = Timeslot.new(timeslot_params)
 
         @timeslot.sitter = current_user.sitter
