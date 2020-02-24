@@ -11,7 +11,7 @@
 			</div>
 			<div class="form-group col-md-6">
 				<%= form.label :price_per_day_in%> $<br>
-				<%= form.text_field :price, :class=>"form-control", :required => true, :type=>"number", :min=>"0" %>
+				<%= form.file_field  :price, :class=>"form-control", :required => true, :type=>"number", :min=>"0" %>
 			</div>
 		</div>
 		<div class="form-row ">
@@ -33,11 +33,17 @@
 			<%= form.label :about %><br>
 			<%= form.text_area :description, :class=>"form-control", :rows => 3, :style=>"resize:none;", :maxlength=>"1000" %>
 		</div>
-		<div class="field form-group">
 			<%= form.label :avatar_url %><br>
-			<%= form.text_field :picture, :class=>"form-control" %>
+		<div class="input-group">
+		  <div class="input-group-prepend">
+		    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+		  </div>
+		  <div class="custom-file">
+		    <%= form.file_field :picture, :type=>"file", :class=>"custom-file-input", :accept=>'image/png, image/jpeg, image/jpg', 'aria-describedby'=>"inputGroupFileAddon01"%>
+		    <label class="custom-file-label" for="picture">Choose file</label>
+		  </div>
 		</div>
-		<div class="form-row">
+		<div class="form-row mt-3">
 			<div class="field form-group col-md-2">
 				<%= form.check_box :is_visible, { :multiple => false }, true, false %>
 				<%= form.label :public %>
@@ -57,3 +63,9 @@
 		<% end %>
 	</div>
 </section>
+<script>
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
